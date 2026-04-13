@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profit Architecture — FAAST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared-layout.css">
+  <style>
+    :root{
+      --text:#f7f8fc;--muted:rgba(255,255,255,.74);--muted2:rgba(255,255,255,.50);
+      --red:#ff2748;--red2:#ff5a74;--stroke:rgba(255,255,255,.10);--stroke-2:rgba(255,255,255,.14);
+      --shadow:0 24px 70px rgba(2,8,28,.42);--container:1240px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Manrope',sans-serif;color:var(--text);overflow-x:hidden;padding-top:96px;
+      background:
+        radial-gradient(circle at 12% 16%, rgba(255,39,72,.14), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(123,93,255,.16), transparent 24%),
+        linear-gradient(180deg, #0f1948 0%, #122059 48%, #0f173d 100%);
+    }
+    a{text-decoration:none;color:inherit}
+    section,footer{padding:96px 24px;position:relative}
+    .container{max-width:var(--container);margin:0 auto;position:relative;z-index:2}
+    .page-bg{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .blob{position:absolute;border-radius:50%;filter:blur(20px);opacity:.4;animation:floatBlob 11s ease-in-out infinite}
+    .blob.one{width:340px;height:340px;left:-80px;top:120px;background:radial-gradient(circle, rgba(255,39,72,.34), transparent 68%)}
+    .blob.two{width:400px;height:400px;right:-110px;top:10px;background:radial-gradient(circle, rgba(125,105,255,.28), transparent 70%);animation-delay:-3s}
+    .blob.three{width:300px;height:300px;right:10%;top:42%;background:radial-gradient(circle, rgba(86,129,255,.16), transparent 70%);animation-delay:-6s}
+    .grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);background-size:72px 72px;mask-image:linear-gradient(180deg, rgba(0,0,0,.38), transparent 88%);opacity:.23}
+    .section-tag{display:inline-flex;align-items:center;gap:10px;color:var(--red);font-size:11px;font-weight:800;letter-spacing:.30em;text-transform:uppercase;margin-bottom:16px}
+    .section-tag:before{content:"";width:30px;height:1px;background:var(--red)}
+    .display,.h1,.h2,.h3{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em}
+    .display{font-size:clamp(58px,8vw,122px);line-height:.88}
+    .h1{font-size:clamp(40px,5vw,76px);line-height:.95}
+    .h2{font-size:clamp(34px,4vw,60px);line-height:.95}
+    .h3{font-size:clamp(24px,3vw,34px);line-height:1}
+    .serif{font-family:'DM Serif Display',serif;font-style:italic;letter-spacing:0}
+    .lead{font-size:18px;line-height:1.85;color:var(--muted)}
+    .text{font-size:15px;line-height:1.8;color:var(--muted)}
+    .page-hero{padding:58px 24px 36px;overflow:hidden}
+    .hero-shell{
+      position:relative;border-radius:40px;padding:52px 52px 42px;overflow:hidden;border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at 90% 8%, rgba(255,39,72,.14), transparent 22%),
+        radial-gradient(circle at 0% 100%, rgba(73,114,255,.14), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);isolation:isolate;
+    }
+    .hero-shell:before{
+      content:"";position:absolute;inset:auto -10% -40% auto;width:56%;height:86%;
+      background:radial-gradient(circle, rgba(255,39,72,.12), transparent 68%);animation:pulseGlow 8s ease-in-out infinite;z-index:0;
+    }
+    .hero-shell:after{
+      content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(255,255,255,.10), transparent 24%, transparent 72%, rgba(255,255,255,.05));opacity:.4;z-index:0;
+    }
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);gap:34px;align-items:start;position:relative;z-index:1}
+    .hero-copy{position:relative;min-width:0;max-width:100%}
+    .breadcrumb{display:flex;gap:8px;align-items:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:18px;flex-wrap:wrap}
+    .breadcrumb a{color:rgba(255,255,255,.42);transition:.25s ease}
+    .breadcrumb a:hover{color:#fff}
+    .hero-title{display:flex;flex-direction:column;gap:8px;max-width:100%;width:100%;margin-bottom:18px}
+    .hero-title .profit-line{display:block;font-size:clamp(72px,8.3vw,150px);line-height:.86;max-width:100%}
+    .hero-title .architecture-line{
+      display:block;width:max-content;max-width:100%;font-family:'DM Serif Display',serif;font-style:italic;
+      font-size:clamp(42px,4.8vw,78px);line-height:.93;color:var(--red);text-shadow:0 0 24px rgba(255,39,72,.18);
+      white-space:nowrap;word-break:normal;overflow-wrap:normal;
+    }
+    .hero-copy .lead{max-width:690px}
+    .hero-badges,.hero-actions,.mini-stats,.action-row{display:flex;flex-wrap:wrap;gap:12px}
+    .hero-badges{margin-top:24px}.hero-actions{margin-top:28px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#fff;font-size:12px;font-weight:700;backdrop-filter:blur(10px);transition:.3s ease}
+    .badge:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.18)}
+    .btn-local{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:999px;border:1px solid transparent;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;transition:.28s ease;cursor:pointer;overflow:hidden}
+    .btn-local:before{content:"";position:absolute;inset:0;left:-120%;background:linear-gradient(100deg, transparent 20%, rgba(255,255,255,.18) 50%, transparent 80%);transition:left .7s ease}
+    .btn-local:hover:before{left:120%}
+    .btn-local.primary{background:linear-gradient(135deg,var(--red),#ff3357);color:#fff;box-shadow:0 16px 34px rgba(255,39,72,.28)}
+    .btn-local.primary:hover{transform:translateY(-3px);box-shadow:0 22px 46px rgba(255,39,72,.34)}
+    .btn-local.secondary{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(10px)}
+    .btn-local.secondary:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.07)}
+    .hero-side{display:grid;gap:18px}
+    .hero-side-card{
+      position:relative;padding:28px;border-radius:28px;background:linear-gradient(180deg, rgba(11,18,62,.80), rgba(20,32,90,.72));
+      border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);overflow:hidden;
+      transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    }
+    .hero-side-card:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 48%, transparent 100%);transform:translateX(-120%);transition:transform .8s ease}
+    .hero-side-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.15);box-shadow:0 18px 40px rgba(2,8,28,.22)}
+    .hero-side-card:hover:before{transform:translateX(120%)}
+    .hero-side-card h4{font-size:17px;margin-bottom:10px}
+    .hero-side-card p{font-size:14px;line-height:1.82;color:var(--muted)}
+    .info-strip{background:linear-gradient(90deg, #ff2848, #f12144);overflow:hidden;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);padding:16px 0;position:relative}
+    .info-strip:before,.info-strip:after{content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+    .info-strip:before{left:0;background:linear-gradient(90deg, rgba(241,33,68,1), rgba(241,33,68,0))}
+    .info-strip:after{right:0;background:linear-gradient(270deg, rgba(241,33,68,1), rgba(241,33,68,0))}
+    .info-track{display:flex;gap:26px;white-space:nowrap;animation:marquee 28s linear infinite;font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.16em}
+    .info-track span::after{content:"•";margin-left:26px;opacity:.5}
+    .glass-card,.overview-card,.feature-card,.seat-card,.process-row,.deliverable,.outcome-item,.focus-card{
+      border:1px solid var(--stroke);background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.03));box-shadow:var(--shadow);backdrop-filter:blur(12px);
+    }
+    .two-col{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;align-items:start}
+    .overview-card,.feature-card,.seat-card{padding:34px;border-radius:30px;transition:transform .35s ease,border-color .35s ease}
+    .overview-card:hover,.feature-card:hover,.seat-card:hover{transform:translateY(-4px);border-color:var(--stroke-2)}
+    .mini-stats{margin-top:8px}
+    .deliverables-list{display:grid;gap:14px}
+    .deliverable{padding:20px 22px;border-radius:22px;transition:transform .35s ease,border-color .35s ease, box-shadow .35s ease}
+    .deliverable:hover,.process-row:hover,.focus-card:hover,.outcome-item:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.17);box-shadow:0 24px 54px rgba(2,8,28,.30)}
+    .deliverable h4{font-size:15px;margin-bottom:6px}
+    .deliverable p{font-size:14px;line-height:1.78;color:var(--muted)}
+    .focus-grid,.outcome-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .focus-card,.outcome-item{padding:24px;border-radius:24px;transition:transform .35s ease,border-color .35s ease, box-shadow .35s ease}
+    .focus-kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.42);font-weight:800;margin-bottom:10px}
+    .focus-card h3{font-size:22px;margin-bottom:10px}
+    .focus-card p{font-size:14px;line-height:1.8;color:var(--muted)}
+    .process-wrap{display:grid;gap:16px}
+    .process-row{display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px;padding:24px 26px;border-radius:26px;transition:transform .35s ease,border-color .35s ease, box-shadow .35s ease}
+    .process-day{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;color:#fff;letter-spacing:.02em}
+    .process-copy h4{font-size:19px;margin-bottom:8px}
+    .process-copy p{font-size:14px;line-height:1.82;color:var(--muted)}
+    .outcome-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .outcome-title:before{content:"";width:6px;height:6px;background:#ef2442;border-radius:50%;flex-shrink:0;box-shadow:0 0 12px rgba(239,36,66,.55)}
+    .outcome-desc{font-size:14px;color:rgba(255,255,255,.68);line-height:1.76;padding-left:14px}
+    .seat-card{text-align:center;padding:50px 38px}
+    .seat-card .lead{max-width:760px;margin:0 auto 24px}
+    .action-row{justify-content:center}
+    .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease, transform .8s ease}
+    .reveal.is-visible{opacity:1;transform:none}
+    .reveal-left{transform:translateX(-34px)}
+    .reveal-right{transform:translateX(34px)}
+    .delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}.delay-4{transition-delay:.32s}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes floatBlob{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-18px,0) scale(1.05)}}
+    @keyframes pulseGlow{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}
+    @media (max-width:1180px){
+      .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr)}
+      .hero-title .architecture-line{font-size:clamp(40px,4.6vw,70px)}
+    }
+    @media (max-width:1100px){
+      .hero-grid,.two-col{grid-template-columns:1fr}
+      .hero-shell{padding:42px 28px 34px}
+      .hero-title .profit-line,.hero-title .architecture-line{max-width:100%}
+      .hero-title .architecture-line{width:auto;white-space:normal;font-size:clamp(38px,8vw,60px)}
+    }
+    @media (max-width:900px){
+      .focus-grid,.outcome-grid{grid-template-columns:1fr}
+      .process-row{grid-template-columns:1fr;gap:12px}
+    }
+    @media (max-width:768px){
+      section,footer{padding-left:20px!important;padding-right:20px!important}
+      .page-hero{padding-top:36px}
+      .hero-shell,.overview-card,.feature-card,.seat-card,.deliverable,.process-row,.focus-card,.outcome-item{padding-left:22px;padding-right:22px}
+      .hero-shell{border-radius:28px}
+      .overview-card,.feature-card,.seat-card,.deliverable,.process-row,.focus-card,.outcome-item{border-radius:22px}
+      .display{font-size:clamp(44px,15vw,84px)}.h1{font-size:clamp(34px,12vw,54px)}
+      .hero-title .profit-line{font-size:clamp(54px,16vw,92px)}
+      .hero-title .architecture-line{font-size:clamp(36px,10vw,54px);max-width:100%}
+    }
+    @media (max-width:820px){body{padding-top:82px}}
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      .reveal{opacity:1;transform:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true">
+    <div class="grid-overlay"></div><div class="blob one"></div><div class="blob two"></div><div class="blob three"></div>
+  </div>
+
+  <div id="top"></div>
+  <div id="navbar"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="hero-shell reveal is-visible">
+        <div class="hero-grid">
+          <div class="hero-copy reveal is-visible reveal-left">
+            <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#services">Services</a><span>/</span><span>Profit Architecture</span></div>
+            <div class="section-tag">Financial Systems</div>
+            <h1 class="display hero-title"><span class="profit-line">PROFIT</span><span class="architecture-line">Architecture</span></h1>
+            <p class="lead">Build a financial engine that runs on numbers, not instinct. KFI dashboards, compensation design, and profit systems that make money visible.</p>
+            <div class="hero-badges">
+              <span class="badge">KFI Dashboard Design</span>
+              <span class="badge">Compensation Architecture</span>
+              <span class="badge">Profit Visibility</span>
+            </div>
+            <div class="hero-actions">
+              <a href="contact.html" class="btn-local primary">Build Your Profit System</a>
+              <a href="#process" class="btn-local secondary">See How It Works</a>
+            </div>
+          </div>
+          <div class="hero-side">
+            <div class="hero-side-card reveal is-visible reveal-right delay-1"><h4>Not just reporting</h4><p>Profit Architecture is not about more spreadsheets. It is about building a financial decision system that shows exactly what numbers affect profit and what to do next.</p></div>
+            <div class="hero-side-card reveal is-visible reveal-right delay-2"><h4>What changes inside the business</h4><p>We redesign your KFI dashboard, pricing visibility, compensation logic, and review rhythm so financial decisions stop relying on instinct and start running on clarity.</p></div>
+            <div class="hero-side-card reveal is-visible reveal-right delay-3"><h4>What success looks like</h4><p>A business with clearer margins, fewer profit leaks, stronger incentive alignment, and a financial system your team can actually use to make better decisions.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-strip">
+    <div class="info-track">
+      <span>Profit Architecture</span><span>KFI Methodology</span><span>Margin Clarity</span><span>Compensation Design</span><span>Pricing Visibility</span><span>Financial Rhythm</span><span>Decision Framework</span><span>Profit Architecture</span>
+      <span>Profit Architecture</span><span>KFI Methodology</span><span>Margin Clarity</span><span>Compensation Design</span><span>Pricing Visibility</span><span>Financial Rhythm</span><span>Decision Framework</span><span>Profit Architecture</span>
+    </div>
+  </div>
+
+  <section id="overview" style="background:linear-gradient(180deg, rgba(28,42,101,.68), rgba(17,31,80,.35));">
+    <div class="container">
+      <div class="two-col">
+        <div class="overview-card reveal">
+          <div class="section-tag">Overview</div>
+          <h2 class="h1" style="margin-bottom:18px">MAKE PROFIT <span class="serif" style="color:var(--red)">VISIBLE</span></h2>
+          <p class="text" style="margin-bottom:16px">Most business owners know their revenue. Almost none know their real profit drivers. Profit Architecture is the process of identifying, measuring, and engineering the specific financial levers that directly impact your bottom line.</p>
+          <p class="text">We build your KFI dashboard from scratch around your business model, then redesign compensation and reporting rhythm so every ringgit, action, and incentive points in the right direction.</p>
+        </div>
+        <div class="overview-card reveal delay-1">
+          <div class="section-tag">At a Glance</div>
+          <div class="mini-stats">
+            <span class="badge">Custom KFI Dashboard</span>
+            <span class="badge">Profit Leak Diagnosis</span>
+            <span class="badge">Pricing &amp; Margin Review</span>
+            <span class="badge">Weekly / Monthly / Quarterly Rhythm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="focus">
+    <div class="container">
+      <div class="section-tag reveal">Core Focus</div>
+      <h2 class="h1 reveal delay-1" style="margin-bottom:22px">WHAT THIS BUILDS <span class="serif" style="color:var(--red)">INSIDE</span> YOUR BUSINESS</h2>
+      <div class="focus-grid">
+        <div class="focus-card reveal"><div class="focus-kicker">01</div><h3 class="h3">KFI Dashboard</h3><p>Track only the numbers that directly influence profit, margin, and decision-making — nothing extra, nothing vague.</p></div>
+        <div class="focus-card reveal delay-1"><div class="focus-kicker">02</div><h3 class="h3">Compensation Design</h3><p>Redesign how your team gets rewarded so incentives support healthy profit, not just busy activity or top-line noise.</p></div>
+        <div class="focus-card reveal delay-2"><div class="focus-kicker">03</div><h3 class="h3">Margin Clarity</h3><p>Understand where profit is actually made, where it leaks, and which products, services, or behaviours need correction.</p></div>
+        <div class="focus-card reveal delay-3"><div class="focus-kicker">04</div><h3 class="h3">Financial Rhythm</h3><p>Install a repeatable review structure your team can run weekly, monthly, and quarterly without guessing what matters.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:linear-gradient(180deg,#0f173d,#13225b)">
+    <div class="container">
+      <div class="two-col">
+        <div class="feature-card reveal">
+          <div class="section-tag">What You'll Get</div>
+          <h2 class="h1" style="margin-bottom:18px">BUILT FOR <span class="serif" style="color:var(--red)">REAL</span> FINANCIAL CONTROL</h2>
+          <p class="text" style="margin-bottom:16px">This is not generic finance advice. The system is designed around your business model, how money actually flows inside your operations, and where profit is being strengthened or lost.</p>
+          <p class="text">The output is practical, readable, and usable by both leadership and operational decision-makers.</p>
+        </div>
+        <div class="deliverables-list">
+          <div class="deliverable reveal delay-1"><h4>Custom KFI Dashboard</h4><p>Track only the numbers that directly impact profit — nothing else.</p></div>
+          <div class="deliverable reveal delay-2"><h4>Profit Leak Diagnosis</h4><p>Find exactly where money is leaving your business undetected.</p></div>
+          <div class="deliverable reveal delay-3"><h4>Compensation Architecture</h4><p>Redesign how your team is paid to align incentives with profit.</p></div>
+          <div class="deliverable reveal delay-4"><h4>Pricing &amp; Margin Review</h4><p>Ensure every product and service is priced for real profitability.</p></div>
+          <div class="deliverable reveal delay-1"><h4>Financial Reporting Rhythm</h4><p>Install weekly, monthly, and quarterly review systems your team can run.</p></div>
+          <div class="deliverable reveal delay-2"><h4>Decision Framework</h4><p>Stop guessing and make strategic calls backed by financial visibility.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="container">
+      <div class="section-tag reveal">How It Works</div>
+      <h2 class="h1 reveal delay-1" style="margin-bottom:22px">THE <span class="serif" style="color:var(--red)">PROCESS</span></h2>
+      <div class="process-wrap">
+        <div class="process-row reveal"><div class="process-day">WEEK 1–2</div><div class="process-copy"><h4>Financial Audit</h4><p>We review your P&amp;L, pricing, cost structures, and compensation. The goal is to identify every profit leak and every misaligned incentive affecting profitability.</p></div></div>
+        <div class="process-row reveal delay-1"><div class="process-day">WEEK 3–4</div><div class="process-copy"><h4>KFI Design</h4><p>We define the exact financial indicators that matter most to your business, then build a dashboard that makes those numbers visible, actionable, and usable.</p></div></div>
+        <div class="process-row reveal delay-2"><div class="process-day">WEEK 5–6</div><div class="process-copy"><h4>Compensation &amp; Pricing Alignment</h4><p>We restructure compensation logic, pricing assumptions, and margin thinking so team behaviour and business outputs move in the same direction.</p></div></div>
+        <div class="process-row reveal delay-3"><div class="process-day">ONGOING</div><div class="process-copy"><h4>Review Rhythm</h4><p>We install weekly, monthly, and quarterly review habits so financial clarity becomes operational discipline rather than a one-time exercise.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:linear-gradient(180deg,#0f173d,#13225b)">
+    <div class="container">
+      <div class="section-tag reveal">Outcomes</div>
+      <h2 class="h1 reveal delay-1" style="margin-bottom:22px">WHAT YOU WALK AWAY <span class="serif" style="color:var(--red)">WITH</span></h2>
+      <div class="outcome-grid">
+        <div class="outcome-item reveal"><div class="outcome-title">Sharper Profit Visibility</div><div class="outcome-desc">See what numbers genuinely affect profit and where management focus should go first.</div></div>
+        <div class="outcome-item reveal delay-1"><div class="outcome-title">KFI Financial Dashboard</div><div class="outcome-desc">A dashboard built around the exact indicators that drive your bottom line.</div></div>
+        <div class="outcome-item reveal delay-2"><div class="outcome-title">Fewer Profit Leaks</div><div class="outcome-desc">Identify and correct the hidden places where money has been slipping away.</div></div>
+        <div class="outcome-item reveal delay-3"><div class="outcome-title">Aligned Compensation</div><div class="outcome-desc">Reward structures that support healthier decisions, stronger margins, and better behaviour.</div></div>
+        <div class="outcome-item reveal"><div class="outcome-title">Better Pricing Decisions</div><div class="outcome-desc">Clearer confidence around how products and services should be priced for real profitability.</div></div>
+        <div class="outcome-item reveal delay-1"><div class="outcome-title">Financial Decision Framework</div><div class="outcome-desc">A repeatable logic for making decisions backed by numbers, not instinct.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:linear-gradient(180deg,#101a46,#122059)">
+    <div class="container">
+      <div class="seat-card reveal">
+        <div class="section-tag" style="justify-content:center">Next Step</div>
+        <h2 class="h1" style="margin-bottom:18px">READY TO BUILD <span class="serif" style="color:var(--red)">PROFIT</span> WITH CLARITY?</h2>
+        <p class="lead">Book a free strategy session and see how Profit Architecture can be applied to your pricing, incentive design, reporting rhythm, and margin visibility.</p>
+        <div class="action-row">
+          <a href="contact.html" class="btn-local primary">Build Your Profit System</a>
+          <a href="contact.html" class="btn-local secondary">Book a Free Call First</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="shared-layout.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      let tries = 0;
+      const timer = setInterval(function () {
+        const links = document.querySelectorAll('.nav-link');
+        if (!links.length) {
+          tries++;
+          if (tries > 40) clearInterval(timer);
+          return;
+        }
+        links.forEach(link => link.classList.remove('is-active'));
+        const servicesLink = document.querySelector('.nav-link[data-section="services"]');
+        if (servicesLink) servicesLink.classList.add('is-active');
+        tries++;
+        if (tries > 10) clearInterval(timer);
+      }, 150);
+    });
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+
+    revealItems.forEach(item => {
+      if (!item.classList.contains('is-visible')) revealObserver.observe(item);
+    });
+  </script>
+</body>
+</html>

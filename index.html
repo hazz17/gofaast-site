@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="shared-layout.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAAST — Strategic Training & Business Consultancy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#111c4e;
+  --bg-2:#162664;
+  --bg-3:#1d2f74;
+  --surface:#1b2b69;
+  --surface-2:#22357c;
+  --stroke:rgba(255,255,255,.10);
+  --text:#f7f8fc;
+  --muted:rgba(255,255,255,.72);
+  --muted-2:rgba(255,255,255,.52);
+  --red:#ef2442;
+  --red-soft:rgba(239,36,66,.12);
+  --blue:#5f82ff;
+  --purple:#9c6fff;
+  --gold:#ffd84a;
+  --shadow:0 20px 60px rgba(3,8,30,.35);
+  --radius:24px;
+  --radius-sm:16px;
+  --container:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:linear-gradient(180deg,#101a49 0%,#13225b 100%);
+  color:var(--text);
+  overflow-x:hidden;
+  padding-top:96px;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+section,footer{padding:96px 24px}
+.container{max-width:var(--container);margin:0 auto}
+.section-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  color:var(--red);font-size:11px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;
+}
+.section-tag::before{content:"";width:30px;height:1px;background:var(--red)}
+.h1,.h2,.h3,.display,.bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em}
+.display{font-size:clamp(64px,10vw,138px);line-height:.88}
+.h1{font-size:clamp(48px,6vw,92px);line-height:.92}
+.h2{font-size:clamp(40px,5vw,72px);line-height:.95}
+.h3{font-size:clamp(24px,3vw,34px);line-height:1}
+.eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted-2);font-weight:700}
+.lead{font-size:18px;line-height:1.8;color:var(--muted);max-width:760px}
+.text{font-size:15px;line-height:1.8;color:var(--muted)}
+.subtle{color:var(--muted-2)}
+.serif{font-family:'DM Serif Display',serif;font-style:italic;letter-spacing:0}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 24px;border-radius:999px;border:1px solid transparent;
+  font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  transition:.25s ease;cursor:pointer;
+}
+.btn-primary{background:var(--red);color:#ffffff !important;box-shadow:0 12px 30px rgba(239,36,66,.26);text-shadow:none}
+.btn-primary:hover{transform:translateY(-2px);background:#ff3350}
+.btn-secondary{border-color:var(--stroke);background:rgba(255,255,255,.03);color:#fff}
+.btn-secondary:hover{border-color:rgba(255,255,255,.24);transform:translateY(-2px)}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  color:#fff;font-size:12px;font-weight:700
+}
+.grid{display:grid;gap:24px}
+.card{
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+  border:1px solid var(--stroke);border-radius:var(--radius);box-shadow:var(--shadow)
+}
+.nav-dropdown.active .nav-drop-toggle .caret,
+.nav-dropdown:hover .nav-dropdown:hover .mega-menu,
+.nav-dropdown.active .hero-panel{
+  padding:58px 42px 44px;
+  border-radius:36px;
+  background:
+    radial-gradient(circle at 0% 100%, rgba(95,130,255,.20), transparent 32%),
+    radial-gradient(circle at 100% 0%, rgba(239,36,66,.12), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 30px 90px rgba(6,12,44,.28);
+}
+.hero-copy .display{
+  max-width:9.3ch;
+  text-wrap:balance;
+  text-shadow:0 14px 34px rgba(0,0,0,.16);
+}
+.hero-copy .display .serif{display:inline-block;text-shadow:0 8px 28px rgba(239,36,66,.16)}
+.hero-copy .lead{
+  max-width:760px;
+  font-size:19px;
+  color:rgba(255,255,255,.82);
+}
+.hero-copy .btn-row{margin-top:8px}
+.hero-stats .stat-card{
+  backdrop-filter:blur(8px);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.035));
+}
+.hero-feature{
+  position:relative;
+  overflow:hidden;
+  transition:transform .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.hero-feature::after{
+  content:"";position:absolute;inset:auto -30px -32px auto;width:110px;height:110px;border-radius:50%;
+  background:radial-gradient(circle, rgba(239,36,66,.16), transparent 68%);opacity:.75;pointer-events:none;
+}
+.hero-feature:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16);box-shadow:0 18px 40px rgba(7,12,39,.22)}
+
+@keyframes floatSoft{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+@keyframes pulseGlow{
+  0%,100%{opacity:.45}
+  50%{opacity:.85}
+}
+@keyframes badgeFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-3px)}
+}
+@keyframes premiumSheen{
+  0%{transform:translateX(-140%) skewX(-22deg);opacity:0}
+  18%{opacity:.18}
+  45%{opacity:.28}
+  100%{transform:translateX(220%) skewX(-22deg);opacity:0}
+}
+@keyframes accentShift{
+  0%{background-position:0% 50%}
+  100%{background-position:100% 50%}
+}
+
+.service-card{
+  transform-origin:center;
+  will-change:transform, box-shadow;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.03)),
+    radial-gradient(circle at top right, rgba(255,255,255,.04), transparent 24%);
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+  position:relative;
+  isolation:isolate;
+  backdrop-filter:blur(10px);
+  padding:30px;
+  overflow:hidden;
+  transition:transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+  cursor:pointer;
+  text-decoration:none
+}
+.service-card::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:4px;
+  background:linear-gradient(90deg,var(--red),#ff6d84,#ffb0bd,var(--red));
+  background-size:200% 100%;
+  opacity:.98;
+  animation:accentShift 5s linear infinite;
+}
+.service-card::after{
+  content:'';
+  position:absolute;
+  inset:auto -60px -70px auto;
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(239,36,66,.22), transparent 65%);
+  opacity:.58;
+  pointer-events:none;
+  transition:transform .35s ease, opacity .35s ease, filter .35s ease;
+  filter:blur(2px);
+}
+.service-card .click-hint{
+  transition:transform .22s ease, background .22s ease, border-color .22s ease, color .22s ease, box-shadow .22s ease;
+  margin-left:auto;
+}
+.service-card .sn,
+.service-card h3,
+.service-card p,
+.service-card .service-footer{
+  position:relative;
+  z-index:2;
+}
+.service-card > *{
+  position:relative;
+  z-index:2;
+}
+.service-card .card-sheen{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  border-radius:inherit;
+  pointer-events:none;
+  z-index:1;
+}
+.service-card .card-sheen::before{
+  content:"";
+  position:absolute;
+  top:-10%;
+  left:-20%;
+  width:35%;
+  height:140%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
+  transform:translateX(-160%) skewX(-22deg);
+}
+.service-card:hover{
+  transform:translateY(-12px) scale(1.014);
+  border-color:rgba(255,255,255,.18);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.04)),
+    radial-gradient(circle at top right, rgba(255,255,255,.05), transparent 24%);
+  box-shadow:
+    0 34px 80px rgba(7,12,39,.40),
+    0 0 0 1px rgba(255,255,255,.05) inset,
+    0 0 26px rgba(255,255,255,.05);
+}
+.service-card:hover::after{
+  transform:scale(1.14);
+  opacity:.95;
+  filter:blur(0px);
+}
+.service-card:hover .card-sheen::before{
+  animation:premiumSheen 1.35s ease;
+}
+.service-card:hover .click-hint{
+  background:rgba(239,36,66,.18);
+  border-color:rgba(239,36,66,.34);
+  color:#fff;
+  transform:translateX(4px);
+  box-shadow:0 12px 24px rgba(239,36,66,.16);
+}
+.service-card:hover .service-tags span{
+  background:rgba(255,255,255,.09);
+  border-color:rgba(255,255,255,.15);
+}
+.service-card:focus-visible{outline:2px solid rgba(239,36,66,.65);outline-offset:3px}
+
+.kfi-wrap{
+  margin-top:36px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:28px;
+  align-items:stretch;
+}
+.compare-card{
+  position:relative;
+  overflow:hidden;
+  padding:36px 32px;
+  border-radius:34px;
+  border:1px solid rgba(255,255,255,.10);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+  box-shadow:0 28px 72px rgba(7,12,39,.26);
+  min-height:100%;
+  transition:transform .30s ease,border-color .30s ease,box-shadow .30s ease, background .30s ease;
+  backdrop-filter:blur(10px);
+}
+.compare-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:4px;
+}
+.compare-card::after{
+  content:"";
+  position:absolute;
+  inset:auto -46px -46px auto;
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  opacity:.42;
+  pointer-events:none;
+  filter:blur(2px);
+}
+.compare-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(255,255,255,.16);
+  box-shadow:0 30px 74px rgba(7,12,39,.32);
+}
+.compare-card .eyebrow{margin-bottom:12px;}
+.compare-card h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:60px;
+  letter-spacing:.12em;
+  margin-bottom:14px;
+  line-height:.9;
+}
+.compare-card p{
+  font-size:15px;
+  color:rgba(255,255,255,.78);
+  line-height:1.8;
+  margin-bottom:18px;
+}
+.compare-list{
+  display:grid;
+  gap:14px;
+  margin-top:18px;
+}
+.compare-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:18px 18px;
+  border-radius:20px;
+  font-size:15px;
+  line-height:1.7;
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.035));
+  transition:transform .22s ease, border-color .22s ease, background .22s ease;
+}
+.compare-item:hover{
+  transform:translateX(4px);
+  border-color:rgba(255,255,255,.14);
+}
+.compare-item span{
+  font-weight:900;
+  flex-shrink:0;
+  margin-top:1px;
+  font-size:18px;
+}
+.compare-card.kpi{
+  background:
+    radial-gradient(circle at top right, rgba(95,130,255,.14), transparent 26%),
+    linear-gradient(180deg,rgba(95,130,255,.11),rgba(255,255,255,.03));
+}
+.compare-card.kpi::before{background:linear-gradient(90deg,#7ca1ff,#d4e0ff)}
+.compare-card.kpi::after{background:radial-gradient(circle, rgba(125,176,255,.28), transparent 68%)}
+.compare-card.kpi h3{color:#dce8ff;text-shadow:0 0 18px rgba(125,176,255,.08)}
+.compare-card.kpi .compare-item span{color:#9fc0ff}
+.compare-card.kfi{
+  background:
+    radial-gradient(circle at top right, rgba(239,36,66,.14), transparent 26%),
+    linear-gradient(180deg,rgba(239,36,66,.10),rgba(255,255,255,.03));
+}
+.compare-card.kfi::before{background:linear-gradient(90deg,#ef2442,#ff9aac)}
+.compare-card.kfi::after{background:radial-gradient(circle, rgba(239,36,66,.24), transparent 68%)}
+.compare-card.kfi h3{
+  background:linear-gradient(90deg,#ffffff,#ffd1dc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-shadow:none;
+}
+.compare-card.kfi .compare-item span{color:#ff9fb0}
+
+.hero{padding-top:64px;padding-bottom:72px;position:relative;overflow:hidden}
+.hero::before,.hero::after{
+  content:"";position:absolute;inset:auto;pointer-events:none;filter:blur(40px);opacity:.65
+}
+.hero::before{width:420px;height:420px;border-radius:50%;background:rgba(239,36,66,.18);top:-120px;right:-120px}
+.hero::after{width:420px;height:420px;border-radius:50%;background:rgba(95,130,255,.16);bottom:-160px;left:-120px}
+.hero-panel{
+  position:relative;overflow:hidden;padding:48px 44px;border-radius:36px;
+  background:
+    radial-gradient(circle at top right, rgba(239,36,66,.12), transparent 28%),
+    radial-gradient(circle at left bottom, rgba(95,130,255,.14), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);box-shadow:var(--shadow)
+}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:40px;align-items:start}
+.hero-copy{display:grid;gap:18px;align-content:start}
+.hero-copy .section-tag{margin-bottom:0}
+.hero-copy .display{margin-bottom:0;max-width:10ch}
+.hero-copy p{margin-bottom:0}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.stat-card{padding:18px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.stat-card strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1}
+.stat-card span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.hero-side{display:grid;gap:16px}
+.hero-feature{padding:24px;border-radius:24px;background:rgba(9,16,50,.45);border:1px solid rgba(255,255,255,.08)}
+.hero-feature h4{font-size:15px;margin-bottom:8px}
+.hero-feature p{font-size:14px;line-height:1.7;color:var(--muted)}
+.marquee{padding:18px 0;background:var(--red);overflow:hidden;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
+.marquee-track{display:flex;gap:24px;white-space:nowrap;animation:marquee 30s linear infinite}
+.marquee span{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.16em}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.problem-grid{grid-template-columns:1fr 1fr;align-items:start}
+.problem-list{display:grid;gap:14px}
+.pain{display:flex;gap:14px;padding:18px 18px 18px 16px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.pain-icon{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;flex-shrink:0;box-shadow:0 12px 28px rgba(0,0,0,.18)}
+.pain-icon::before{content:'◆';font-size:13px;color:#ff6e86;filter:drop-shadow(0 0 10px rgba(239,36,66,.35))}
+.pain h4{font-size:15px;margin-bottom:6px}
+.pain p{font-size:14px;line-height:1.7;color:var(--muted)}
+
+
+.framework-top{
+  display:grid;
+  grid-template-columns:1.16fr .84fr;
+  gap:34px;
+  align-items:stretch;
+  margin-top:40px;
+}
+.diagram-card{
+  padding:0;
+  position:relative;
+  overflow:visible;
+  border-radius:34px;
+  background:transparent;
+  border:none;
+  box-shadow:none;
+}
+.framework-diagram{
+  position:relative;
+  min-height:560px;
+  border-radius:34px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.08), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(239,36,66,.12), transparent 24%),
+    linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));
+  box-shadow:
+    0 28px 70px rgba(4,10,34,.30),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+}
+.framework-diagram::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.09),transparent);
+  transform:translateX(-140%) skewX(-20deg);
+  transition:transform 1s ease;
+  pointer-events:none;
+}
+.framework-diagram:hover::before{
+  transform:translateX(140%) skewX(-20deg);
+}
+.framework-diagram::after{
+  content:"";
+  position:absolute;
+  inset:auto -60px -70px auto;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(239,36,66,.18), transparent 68%);
+  pointer-events:none;
+}
+.tops-image-stage{
+  position:relative;
+  width:100%;
+  height:100%;
+  min-height:520px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.09);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:58px 26px 26px;
+}
+.tops-framework-label{
+  position:absolute;
+  top:22px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  padding:14px 34px;
+  min-width:330px;
+  text-align:center;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:linear-gradient(135deg, rgba(22,34,96,.88), rgba(58,82,180,.68));
+  backdrop-filter:blur(14px);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#fff;
+  box-shadow:0 14px 30px rgba(0,0,0,.20);
+  white-space:nowrap;
+}
+.tops-image-link{
+  display:block;
+  width:100%;
+  text-decoration:none;
+}
+.tops-image-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.tops-image-wrap img{
+  width:100%;
+  max-width:1180px;
+  max-height:680px;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  border-radius:24px;
+  background:#fff;
+  box-shadow:
+    0 26px 70px rgba(0,0,0,.26),
+    0 0 0 1px rgba(0,0,0,.05);
+  cursor:zoom-in;
+  transition:transform .35s ease, box-shadow .35s ease, filter .35s ease;
+}
+.tops-image-link:hover img{
+  transform:scale(1.022);
+  box-shadow:
+    0 34px 84px rgba(0,0,0,.30),
+    0 0 0 1px rgba(0,0,0,.06);
+  filter:saturate(1.02);
+}
+
+.framework-notes{
+  display:grid;
+  gap:16px;
+}
+.note-card{
+  padding:24px 22px;
+  border-radius:26px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  position:relative;
+  overflow:hidden;
+  transition:transform .30s ease, border-color .30s ease, box-shadow .30s ease, background .30s ease;
+  box-shadow:0 16px 34px rgba(7,12,39,.16);
+}
+.note-card::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:4px;
+  border-radius:999px;
+}
+.note-card::after{
+  content:"";
+  position:absolute;
+  inset:auto -30px -40px auto;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  opacity:.18;
+  pointer-events:none;
+}
+.note-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(255,255,255,.16);
+  box-shadow:0 22px 46px rgba(7,12,39,.24);
+}
+.note-card h4{
+  font-size:20px;
+  margin-bottom:8px;
+  font-family:'Bebas Neue',sans-serif;
+  letter-spacing:.14em;
+}
+.note-card p{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.8;
+  margin-bottom:14px;
+}
+.note-card.talent::before{background:linear-gradient(180deg,#7db0ff,#dce8ff)}
+.note-card.operation::before{background:linear-gradient(180deg,#c6a4ff,#efe3ff)}
+.note-card.profit::before{background:linear-gradient(180deg,#ff8aa0,#ffd1dc)}
+.note-card.talent::after{background:radial-gradient(circle, rgba(125,176,255,.35), transparent 68%)}
+.note-card.operation::after{background:radial-gradient(circle, rgba(198,164,255,.35), transparent 68%)}
+.note-card.profit::after{background:radial-gradient(circle, rgba(255,138,160,.35), transparent 68%)}
+.note-card.talent h4{color:#93abff}
+.note-card.operation h4{color:#d3bcff}
+.note-card.profit h4{color:#ff8ca0}
+#topsPopup{
+  position:fixed;
+  inset:0;
+  background:rgba(4,8,24,.88);
+  backdrop-filter:blur(8px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+  padding:36px;
+}
+#topsPopup.active{display:flex;}
+#topsPopupInner{
+  position:relative;
+  max-width:min(1180px, 94vw);
+  max-height:90vh;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#topsPopup img{
+  max-width:100%;
+  max-height:90vh;
+  width:auto;
+  height:auto;
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 40px 100px rgba(0,0,0,.45);
+}
+#topsPopupClose{
+  position:absolute;
+  top:-16px;
+  right:-6px;
+  width:46px;
+  height:46px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.08em;border:1px solid transparent}
+.chip.red{background:rgba(239,36,66,.12);color:#ff7f93;border-color:rgba(239,36,66,.18)}
+.chip.blue{background:rgba(95,130,255,.12);color:#93abff;border-color:rgba(95,130,255,.18)}
+.chip.purple{background:rgba(156,111,255,.12);color:#c6a4ff;border-color:rgba(156,111,255,.18)}
+
+.faast-grid{margin-top:28px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.faast-card{
+  position:relative;
+  padding:26px 20px;
+  border-radius:24px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03)),
+    radial-gradient(circle at top right, rgba(255,255,255,.03), transparent 24%);
+  border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+  min-height:250px;
+  isolation:isolate;
+  transition:transform .32s ease, border-color .32s ease, box-shadow .32s ease, background .32s ease;
+}
+.faast-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  transform:translateX(-180%) skewX(-22deg);
+  z-index:1;
+}
+.faast-card::after{
+  content:"";
+  position:absolute;
+  inset:auto -50px -54px auto;
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  opacity:.35;
+  filter:blur(2px);
+  pointer-events:none;
+  transition:transform .35s ease, opacity .35s ease;
+  z-index:0;
+}
+.faast-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(255,255,255,.16);
+  box-shadow:
+    0 24px 60px rgba(6,12,38,.35),
+    0 0 0 1px rgba(255,255,255,.05) inset;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.04)),
+    radial-gradient(circle at top right, rgba(255,255,255,.04), transparent 24%);
+}
+.faast-card:hover::before{
+  animation:premiumSheen 1.25s ease;
+}
+.faast-card:hover::after{
+  transform:scale(1.12);
+  opacity:.6;
+}
+.faast-card:hover .big-letter{
+  opacity:.18;
+  transform:scale(1.04) translateY(-4px);
+}
+.faast-card:hover .letter-badge{
+  transform:translateY(-4px) scale(1.04);
+}
+.faast-card:hover h4{
+  transform:translateY(-1px);
+}
+.faast-card .big-letter{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:84px;
+  line-height:.9;
+  color:rgba(255,255,255,.09);
+  position:absolute;
+  top:14px;
+  right:18px;
+  transition:transform .35s ease, opacity .35s ease;
+  z-index:0;
+}
+.faast-card .letter-badge{
+  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+  font-family:'Bebas Neue',sans-serif;font-size:30px;margin-bottom:18px;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 14px 34px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .28s ease, box-shadow .28s ease, filter .28s ease;
+  animation:badgeFloat 4.2s ease-in-out infinite;
+  position:relative;
+  z-index:2;
+}
+.faast-card h4{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px;
+  letter-spacing:.12em;
+  margin-bottom:10px;
+  display:inline-block;
+  position:relative;
+  background:linear-gradient(90deg,#ffffff,#dfe7ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-shadow:0 6px 18px rgba(0,0,0,.16);
+  transition:transform .25s ease, filter .25s ease;
+  z-index:2;
+}
+.faast-card h4::after{
+  content:"";
+  display:block;
+  width:54px;
+  height:3px;
+  margin-top:8px;
+  border-radius:999px;
+  background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(255,255,255,.18));
+  box-shadow:0 0 16px rgba(255,255,255,.12);
+}
+.faast-card p{font-size:14px;color:var(--muted);line-height:1.7;position:relative;z-index:2}
+
+.faast-card.f .letter-badge{
+  background:linear-gradient(135deg,#ffd84a,#fff1a8);
+  color:#1a1a1a;
+  box-shadow:0 10px 25px rgba(255,216,74,.35);
+}
+.faast-card.a1 .letter-badge{
+  background:linear-gradient(135deg,#7db0ff,#dce8ff);
+  color:#1a2a5a;
+  box-shadow:0 10px 25px rgba(125,176,255,.35);
+}
+.faast-card.a2 .letter-badge{
+  background:linear-gradient(135deg,#8fffd1,#d8fff0);
+  color:#0f3d2e;
+  box-shadow:0 10px 25px rgba(143,255,209,.35);
+}
+.faast-card.s .letter-badge{
+  background:linear-gradient(135deg,#c6a4ff,#efe3ff);
+  color:#2a1f4d;
+  box-shadow:0 10px 25px rgba(198,164,255,.35);
+}
+.faast-card.t .letter-badge{
+  background:linear-gradient(135deg,#ffb86b,#ffe2b8);
+  color:#4a2a00;
+  box-shadow:0 10px 25px rgba(255,184,107,.35);
+}
+
+.faast-card.f h4{
+  background:linear-gradient(90deg,#ffd84a,#fff1a8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.faast-card.f h4::after{background:linear-gradient(90deg,#ffd84a,rgba(255,216,74,.15));}
+.faast-card.f::after{background:radial-gradient(circle, rgba(255,216,74,.32), transparent 68%)}
+
+.faast-card.a1 h4{
+  background:linear-gradient(90deg,#7db0ff,#dce8ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.faast-card.a1 h4::after{background:linear-gradient(90deg,#7db0ff,rgba(125,176,255,.15));}
+.faast-card.a1::after{background:radial-gradient(circle, rgba(125,176,255,.28), transparent 68%)}
+
+.faast-card.a2 h4{
+  background:linear-gradient(90deg,#8fffd1,#d8fff0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.faast-card.a2 h4::after{background:linear-gradient(90deg,#8fffd1,rgba(143,255,209,.15));}
+.faast-card.a2::after{background:radial-gradient(circle, rgba(143,255,209,.28), transparent 68%)}
+
+.faast-card.s h4{
+  background:linear-gradient(90deg,#c6a4ff,#efe3ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.faast-card.s h4::after{background:linear-gradient(90deg,#c6a4ff,rgba(198,164,255,.15));}
+.faast-card.s::after{background:radial-gradient(circle, rgba(198,164,255,.28), transparent 68%)}
+
+.faast-card.t h4{
+  background:linear-gradient(90deg,#ffb86b,#ffe2b8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.faast-card.t h4::after{background:linear-gradient(90deg,#ffb86b,rgba(255,184,107,.15));}
+.faast-card.t::after{background:radial-gradient(circle, rgba(255,184,107,.28), transparent 68%)}
+
+.values{background:linear-gradient(180deg,#ef2442,#cb1733)}
+.values .section-tag,.values .section-tag::before{color:#fff;background:#fff}
+.values .section-tag::before{opacity:.55}
+.values .section-tag{color:rgba(255,255,255,.88)}
+.values-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:end;margin-bottom:28px}
+.value-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.value-card{padding:24px 20px;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.value-num{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:800;margin-bottom:12px}
+.value-card h4{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.1em;margin-bottom:8px}
+.value-card p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.86)}
+.differ-grid{grid-template-columns:repeat(3,1fr)}
+.diff-card{
+  padding:30px;border-radius:28px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);box-shadow:0 18px 44px rgba(7,12,39,.24)
+}
+.diff-card::before{content:'';position:absolute;inset:0 auto 0 0;width:4px;background:linear-gradient(180deg,var(--red),rgba(255,255,255,.2))}
+.diff-card .num{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#ff6982;font-weight:800;margin-bottom:14px}
+.diff-card h3{font-size:24px;line-height:1.15;margin-bottom:10px}
+.diff-card p{font-size:14px;line-height:1.75;color:var(--muted)}
+
+.services-header{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:end;margin-bottom:32px}
+.service-grid{grid-template-columns:repeat(3,1fr)}
+.service-card .sn{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-2);font-weight:800;margin-bottom:12px}
+.service-card h3{
+  font-size:24px;
+  line-height:1.1;
+  margin-bottom:10px;
+  display:inline-block;
+  letter-spacing:.03em;
+  background:linear-gradient(90deg,#ffffff 0%, #dfe7ff 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-shadow:0 6px 18px rgba(0,0,0,.18);
+  transition:transform .25s ease, filter .25s ease;
+}
+.service-card:hover h3{
+  transform:translateY(-1px);
+}
+.service-card h3::after{
+  content:"";
+  display:block;
+  width:58px;
+  height:3px;
+  margin-top:8px;
+  border-radius:999px;
+  background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(255,255,255,.18));
+  box-shadow:0 0 18px rgba(255,255,255,.12);
+}
+.service-card:nth-child(1) h3{
+  background:linear-gradient(90deg,#ffd84a,#fff3b0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.service-card:nth-child(1) h3::after{background:linear-gradient(90deg,#ffd84a,rgba(255,216,74,.15));}
+.service-card:nth-child(1)::after{background:radial-gradient(circle, rgba(255,216,74,.25), transparent 65%)}
+
+.service-card:nth-child(2) h3{
+  background:linear-gradient(90deg,#7db0ff,#d7e6ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.service-card:nth-child(2) h3::after{background:linear-gradient(90deg,#7db0ff,rgba(125,176,255,.15));}
+.service-card:nth-child(2)::after{background:radial-gradient(circle, rgba(125,176,255,.22), transparent 65%)}
+
+.service-card:nth-child(3) h3{
+  background:linear-gradient(90deg,#ff8aa0,#ffd1dc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.service-card:nth-child(3) h3::after{background:linear-gradient(90deg,#ff8aa0,rgba(255,138,160,.15));}
+.service-card:nth-child(3)::after{background:radial-gradient(circle, rgba(255,138,160,.22), transparent 65%)}
+
+.service-card:nth-child(4) h3{
+  background:linear-gradient(90deg,#8fffd1,#d8fff0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.service-card:nth-child(4) h3::after{background:linear-gradient(90deg,#8fffd1,rgba(143,255,209,.15));}
+.service-card:nth-child(4)::after{background:radial-gradient(circle, rgba(143,255,209,.22), transparent 65%)}
+
+.service-card:nth-child(5) h3{
+  background:linear-gradient(90deg,#c6a4ff,#efe3ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.service-card:nth-child(5) h3::after{background:linear-gradient(90deg,#c6a4ff,rgba(198,164,255,.15));}
+.service-card:nth-child(5)::after{background:radial-gradient(circle, rgba(198,164,255,.22), transparent 65%)}
+
+.service-card:nth-child(6) h3{
+  background:linear-gradient(90deg,#ffb86b,#ffe2b8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.service-card:nth-child(6) h3::after{background:linear-gradient(90deg,#ffb86b,rgba(255,184,107,.15));}
+.service-card:nth-child(6)::after{background:radial-gradient(circle, rgba(255,184,107,.22), transparent 65%)}
+
+.service-card p{font-size:14px;line-height:1.75;color:var(--muted);margin-bottom:20px;flex:1 1 auto}
+.service-footer{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:14px;margin-top:auto;padding-top:18px;min-height:74px}
+.service-tags{display:flex;flex-wrap:wrap;gap:8px;align-self:end}
+.service-tags span{
+  padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  font-size:11px;font-weight:800;color:#fff;transition:transform .22s ease, background .22s ease, border-color .22s ease;
+}
+.service-card:hover .service-tags span:nth-child(1){transform:translateY(-1px)}
+.service-card:hover .service-tags span:nth-child(2){transform:translateY(-2px)}
+.service-card:hover .service-tags span:nth-child(3){transform:translateY(-1px)}
+.service-card .click-hint{
+  padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);
+  font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-left:auto;justify-self:end;align-self:end;white-space:nowrap;transition:transform .22s ease, background .22s ease, border-color .22s ease, color .22s ease, box-shadow .22s ease
+}
+
+.founder-grid{
+  display:grid;
+  grid-template-columns:minmax(320px, 460px) minmax(0, 1fr);
+  gap:44px;
+  align-items:center;
+}
+.founder-photo-wrap{
+  position:relative;
+  max-width:460px;
+  width:100%;
+}
+.founder-photo-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  border-radius:34px;
+  background:
+    linear-gradient(135deg, rgba(239,36,66,.28), rgba(95,130,255,.20) 55%, rgba(255,255,255,.10));
+  z-index:0;
+  filter:blur(.2px);
+}
+.founder-photo-wrap::after{
+  content:"";
+  position:absolute;
+  inset:auto -28px -30px auto;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(239,36,66,.18), transparent 68%);
+  pointer-events:none;
+  z-index:0;
+}
+.photo-placeholder{
+  position:relative;
+  z-index:1;
+  min-height:100%;
+  height:100%;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow:0 26px 64px rgba(3,8,30,.34);
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  padding:0;
+}
+.photo-placeholder img{
+  width:100%;
+  height:100%;
+  min-height:420px;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+.founder-copy{
+  max-width:760px;
+}
+.founder-copy .chips{
+  margin-top:6px;
+}
+
+.results{background:
+      radial-gradient(circle at top right, rgba(239,36,66,.10), transparent 24%),
+      radial-gradient(circle at bottom left, rgba(95,130,255,.14), transparent 30%),
+      linear-gradient(180deg,#16255f,#101a46)}
+.slider-shell{margin-top:36px;position:relative}
+.slider-card{
+  position:relative;overflow:hidden;padding:44px;min-height:370px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:stretch;
+  background:
+    radial-gradient(circle at top right, rgba(239,36,66,.18), transparent 22%),
+    radial-gradient(circle at left bottom, rgba(95,130,255,.20), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
+  border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(6,12,36,.36)
+}
+.slider-card::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.20),rgba(255,255,255,0));-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.feedback-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.76);margin-bottom:18px}
+.quote-mark{font-family:'DM Serif Display',serif;font-size:104px;line-height:.72;color:rgba(255,255,255,.18);margin-bottom:10px}
+.result-content p{font-size:21px;line-height:1.9;color:#fff;max-width:860px;margin-bottom:28px;font-weight:500}
+.result-metrics{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.result-metrics span{padding:10px 15px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.10);font-size:12px;font-weight:800;letter-spacing:.10em;text-transform:uppercase;backdrop-filter:blur(6px)}
+.result-person h4{font-size:22px;margin-bottom:6px}
+.result-person div{font-size:13px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.result-side{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:16px}
+.result-side-note{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.42);text-align:right;max-width:120px}
+.slider-controls{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px}
+.slider-nav{display:flex;gap:10px}
+.icon-btn{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;font-size:18px;cursor:pointer;transition:.25s}
+.icon-btn:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.slider-dots{display:flex;gap:10px;align-items:center}
+.slider-dots button{width:10px;height:10px;border:none;border-radius:999px;background:rgba(255,255,255,.25);cursor:pointer;transition:.2s}
+.slider-dots button.active{width:34px;background:linear-gradient(90deg,var(--red),#ff7b91)}
+
+.cta{padding:78px 0 92px}
+.cta-box{
+  max-width:1180px;margin:0 auto;padding:56px 54px;border-radius:34px;
+  background:linear-gradient(135deg, rgba(239,36,66,.12), rgba(95,130,255,.12) 52%, rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.10);box-shadow:0 24px 72px rgba(7,12,39,.28);text-align:center
+}
+.cta-box .h1{margin:16px 0 18px}
+.cta-box .btn-row{margin-top:6px}
+
+.reveal{opacity:0;transform:translateY(18px);transition:all .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}.delay-4{transition-delay:.32s}
+
+@media (max-width:1100px){
+  .result-side{align-items:flex-start;text-align:left}
+  .result-side-note{text-align:left;max-width:none}
+  .hero-grid,.problem-grid,.framework-top,.values-intro,.services-header,.faast-grid,.value-grid,.service-grid,.differ-grid{grid-template-columns:repeat(2,1fr)}
+  .founder-grid{grid-template-columns:minmax(280px,420px) minmax(0,1fr);gap:32px;align-items:stretch}
+  .slider-card{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .nav-links{display:none}
+  .hero-stats,.faast-grid,.value-grid,.service-grid,.differ-grid,.kfi-wrap{grid-template-columns:1fr}
+  .founder-grid{grid-template-columns:1fr;gap:26px}
+  .founder-photo-wrap{max-width:100%}
+  .photo-placeholder{height:auto;min-height:0}
+  .photo-placeholder img{min-height:420px;height:auto;aspect-ratio:4/5}
+  .hero-panel{padding:24px}
+  .display{font-size:clamp(54px,16vw,100px)}
+  .h1{font-size:clamp(42px,12vw,72px)}
+  .stat-card strong{font-size:34px}
+  .framework-top{grid-template-columns:1fr}
+  .framework-diagram{min-height:420px;padding:18px}
+  .tops-image-stage{min-height:360px;padding:70px 16px 18px}
+  .tops-framework-label{
+    min-width:auto;
+    max-width:calc(100% - 28px);
+    padding:12px 18px;
+    font-size:10px;
+    letter-spacing:.16em;
+  }
+  .tops-image-wrap img{max-height:440px}
+  .kfi-wrap{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .display{font-size:clamp(46px,16vw,74px)}
+  .h1{font-size:clamp(34px,13vw,58px)}
+  .lead{font-size:16px}
+  .pain{padding:16px 15px}
+  .pain-icon{width:36px;height:36px;border-radius:12px}
+  .faast-card{min-height:auto}
+  .hero-stats{grid-template-columns:1fr;gap:12px}
+  .stat-card strong{font-size:34px}
+  .service-card{padding:24px 20px}
+  .service-card h3{font-size:21px}
+  .service-footer{grid-template-columns:1fr;align-items:flex-start}
+  .click-hint{align-self:flex-end}
+}
+</style>
+</head>
+<body>
+<div id="top"></div>
+<div id="navbar"></div>
+
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-panel">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="section-tag reveal visible">Self-Sustaining Business Growth</div>
+          <div class="display reveal visible delay-1">BUILD A BUSINESS<br>THAT RUNS <span class="serif" style="color:var(--red)">Without You</span></div>
+          <p class="lead reveal visible delay-2">FAAST helps business owners fix the three areas that keep them stuck: <strong>profit</strong>, <strong>people</strong>, and <strong>operations</strong>. We do not stop at advice. We build the systems, install the structure, and help your team run it with confidence.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap" class="reveal visible delay-2">
+            <span class="badge">Profit • People • Operations</span>
+            <span class="badge">KFI-Led Decision Making</span>
+          </div>
+          <div class="btn-row reveal visible delay-3">
+            <a href="contact.html" class="btn btn-primary">Book Your Strategy Session</a>
+            <a href="#framework" class="btn btn-secondary">See the Framework</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-card reveal visible delay-2"><strong>6000+</strong><span>Vision by 2036</span></div>
+            <div class="stat-card reveal visible delay-3"><strong>3</strong><span>Core systems fixed together</span></div>
+            <div class="stat-card reveal visible delay-4"><strong>1st</strong><span>KFI-led business method</span></div>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-feature reveal visible delay-1">
+            <div class="eyebrow" style="margin-bottom:10px">Designed for founders</div>
+            <h4>Stop being the Chief Everything Officer</h4>
+            <p>Replace chaos, guesswork, and over-dependency with clear systems your team can actually run.</p>
+          </div>
+          <div class="hero-feature reveal visible delay-2">
+            <div class="eyebrow" style="margin-bottom:10px">Financial clarity</div>
+            <h4>Measure what drives real profit</h4>
+            <p>Move beyond vanity metrics and focus on KFI-led decisions that directly impact ringgit and cents.</p>
+          </div>
+          <div class="hero-feature reveal visible delay-3">
+            <div class="eyebrow" style="margin-bottom:10px">Built to scale</div>
+            <h4>Align people, process, and payout</h4>
+            <p>FAAST connects your team structure, workflows, and compensation model so growth becomes sustainable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Profit Architecture</span><span>Talent Systems</span><span>Operational Excellence</span><span>KFI Methodology</span><span>Business Freedom</span><span>Scalable Growth</span><span>Financial Clarity</span><span>T.O.P.S. Operating System</span>
+    <span>Profit Architecture</span><span>Talent Systems</span><span>Operational Excellence</span><span>KFI Methodology</span><span>Business Freedom</span><span>Scalable Growth</span><span>Financial Clarity</span><span>T.O.P.S. Operating System</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="container problem-grid grid">
+    <div>
+      <div class="section-tag reveal">We Understand</div>
+      <h2 class="h1 reveal delay-1" style="margin:16px 0 20px">YOU'RE WORKING HARD<br><span class="serif" style="color:rgba(255,255,255,.42)">But Still Stuck</span></h2>
+      <p class="text reveal delay-2" style="margin-bottom:14px">You built a business that still revolves around <strong style="color:#fff">you</strong>. Every urgent decision, every staff issue, every operational gap comes back to your desk.</p>
+      <p class="text reveal delay-3">Most business advice sounds good on paper, but it does not create financial clarity or a team that can run without you. That is where FAAST is different.</p>
+    </div>
+    <div class="problem-list">
+      <div class="pain reveal delay-1"><div class="pain-icon"></div><div><h4>Staff Dependency</h4><p>Your team still needs constant supervision, approvals, and rescue.</p></div></div>
+      <div class="pain reveal delay-2"><div class="pain-icon"></div><div><h4>Profit Leakage</h4><p>Revenue comes in, but true profit does not rise with the same strength.</p></div></div>
+      <div class="pain reveal delay-2"><div class="pain-icon"></div><div><h4>No System, Only Memory</h4><p>Critical work lives in people’s heads, not in repeatable processes.</p></div></div>
+      <div class="pain reveal delay-3"><div class="pain-icon"></div><div><h4>Chief Everything Officer Trap</h4><p>You hired people, but you are still covering strategy, follow-up, operations, and decisions.</p></div></div>
+      <div class="pain reveal delay-4"><div class="pain-icon"></div><div><h4>No Financial Clarity</h4><p>Decisions feel expensive because you cannot clearly see what drives money and what drains it.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="framework">
+  <div class="container">
+    <div style="text-align:center;max-width:780px;margin:0 auto 34px">
+      <div class="section-tag reveal" style="justify-content:center">The FAAST Method</div>
+      <h2 class="h1 reveal delay-1" style="margin:16px 0">THE T.O.P.S.<br>OPERATING SYSTEM</h2>
+      <p class="lead reveal delay-2" style="margin-inline:auto">FAAST solves <strong>Talent</strong>, <strong>Operation</strong>, and <strong>Profit</strong> together so your business becomes sustainable, measurable, and less dependent on the owner.</p>
+    </div>
+
+    <div class="framework-top">
+      <div class="diagram-card reveal delay-1">
+        <div class="framework-diagram">
+          <div class="tops-image-stage">
+            <div class="tops-framework-label">T.O.P.S. MASTER FRAMEWORK</div>
+            <a href="images/tops-diagram.png" class="tops-image-link" id="topsImageTrigger">
+              <div class="tops-image-wrap">
+                <img src="images/tops-diagram.png" id="topsImage" alt="TOPS Talent Operation Profit Diagram">
+              </div>
+              
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-notes">
+        <div class="note-card talent reveal delay-1">
+          <h4>TALENT</h4>
+          <p>Build accountability, role clarity, and team capability so the business stops relying on the owner for every move.</p>
+          <div class="chips">
+            <span class="chip blue">Career Path</span>
+            <span class="chip blue">Communication</span>
+            <span class="chip blue">Accountability</span>
+          </div>
+        </div>
+
+        <div class="note-card operation reveal delay-2">
+          <h4>OPERATION</h4>
+          <p>Documented workflows and SOPs that help your organisation run on process, not on personality.</p>
+          <div class="chips">
+            <span class="chip purple">Optimisation</span>
+            <span class="chip purple">Organisation</span>
+            <span class="chip purple">SOP Design</span>
+          </div>
+        </div>
+
+        <div class="note-card profit reveal delay-3">
+          <h4>PROFIT</h4>
+          <p>Financial engineering that turns numbers into action: compensation architecture, profit systems, and KFI dashboards.</p>
+          <div class="chips">
+            <span class="chip red">KFI Dashboards</span>
+            <span class="chip red">Profit Sharing</span>
+            <span class="chip red">Compensation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="section-tag reveal" style="margin-top:18px">The F.A.A.S.T. Blueprint</div>
+    <div class="faast-grid">
+      <div class="faast-card f reveal delay-1">
+        <div class="big-letter">F</div>
+        <div class="letter-badge">F</div>
+        <h4>Freedom</h4>
+        <p>Liberation from operational chaos, owner dependency, and reactive firefighting.</p>
+      </div>
+      <div class="faast-card a1 reveal delay-2">
+        <div class="big-letter">A</div>
+        <div class="letter-badge">A</div>
+        <h4>Agile</h4>
+        <p>Empowered teams that respond fast, adapt well, and do not wait for the owner to unblock everything.</p>
+      </div>
+      <div class="faast-card a2 reveal delay-3">
+        <div class="big-letter">A</div>
+        <div class="letter-badge">A</div>
+        <h4>Automated</h4>
+        <p>Systemised routines, smoother follow-through, and less manual chasing across the business.</p>
+      </div>
+      <div class="faast-card s reveal delay-3">
+        <div class="big-letter">S</div>
+        <div class="letter-badge">S</div>
+        <h4>Strategic</h4>
+        <p>Decision-making anchored in the right numbers and the right priorities, not vanity metrics.</p>
+      </div>
+      <div class="faast-card t reveal delay-4">
+        <div class="big-letter">T</div>
+        <div class="letter-badge">T</div>
+        <h4>Timely</h4>
+        <p>Clear milestones, measurable movement, and execution that happens within defined timeframes.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;max-width:940px;margin:62px auto 30px">
+      <div class="section-tag reveal" style="justify-content:center">Financial Clarity</div>
+      <h2 class="h1 reveal delay-1" style="margin:14px 0 14px;text-shadow:0 14px 32px rgba(0,0,0,.18)">KPI <span style="color:rgba(255,255,255,.42)">&amp;</span> KFI</h2>
+      <p class="lead reveal delay-2" style="margin-inline:auto">A clearer premium side-by-side view: KPI shows activity and movement, while KFI shows whether the business is truly improving financially.</p>
+    </div>
+
+    <div class="kfi-wrap">
+      <div class="compare-card kpi reveal delay-1">
+        <div class="eyebrow">Traditional View</div>
+        <h3>KPI</h3>
+        <p>Useful for operational visibility and team performance, but not always enough to show whether the business is becoming healthier in financial terms.</p>
+        <div class="compare-list">
+          <div class="compare-item"><span>•</span><div><strong>Measures activity</strong><br>Strong for tracking movement, output, and visible performance.</div></div>
+          <div class="compare-item"><span>•</span><div><strong>Can look impressive on paper</strong><br>But may become vanity-focused when disconnected from real money outcomes.</div></div>
+          <div class="compare-item"><span>•</span><div><strong>Operational lens first</strong><br>Useful for process control, reporting, and day-to-day monitoring.</div></div>
+        </div>
+      </div>
+      <div class="compare-card kfi reveal delay-2">
+        <div class="eyebrow">FAAST Preferred View</div>
+        <h3>KFI</h3>
+        <p>Built for leaders who want sharper financial clarity. KFI focuses on the numbers that directly shape profitability, sustainability, and better decisions.</p>
+        <div class="compare-list">
+          <div class="compare-item"><span>•</span><div><strong>Measures financial impact</strong><br>Focuses on ringgit-and-cents results, not just visible activity.</div></div>
+          <div class="compare-item"><span>•</span><div><strong>Connects execution to profit</strong><br>Shows whether daily work is actually strengthening business performance.</div></div>
+          <div class="compare-item"><span>•</span><div><strong>Leadership lens first</strong><br>Supports better decisions on people, pricing, payout, and priorities.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="container">
+    <div class="values-intro">
+      <div>
+        <div class="section-tag reveal">Core Values</div>
+        <h2 class="h1 reveal delay-1" style="margin-top:14px">THE PRINCIPLES<br>BEHIND FAAST</h2>
+      </div>
+      <p class="lead reveal delay-2" style="color:rgba(255,255,255,.88)">The pillars are now cleaner, clearer, and easier to scan. No faded background word. Just the values that matter.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-card reveal delay-1"><div class="value-num">Pillar 01</div><h4>Accountable</h4><p>We own actions, commitments, and outcomes. No blame-shifting.</p></div>
+      <div class="value-card reveal delay-2"><div class="value-num">Pillar 02</div><h4>Respect</h4><p>We listen to understand, value perspectives, and work with professionalism.</p></div>
+      <div class="value-card reveal delay-2"><div class="value-num">Pillar 03</div><h4>Excellence</h4><p>We focus on what matters most and deliver with clarity, discipline, and quality.</p></div>
+      <div class="value-card reveal delay-3"><div class="value-num">Pillar 04</div><h4>Courage</h4><p>We make bold decisions, face hard truths, and keep moving forward.</p></div>
+      <div class="value-card reveal delay-4"><div class="value-num">Pillar 05</div><h4>Responsible</h4><p>We initiate change, carry it through, and protect the standards we build.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:end;margin-bottom:28px">
+      <div>
+        <div class="section-tag reveal">Why FAAST</div>
+        <h2 class="h1 reveal delay-1" style="margin-top:16px">WHAT MAKES<br>US DIFFERENT</h2>
+      </div>
+      <p class="lead reveal delay-2">Most consultants stop at strategy decks. FAAST goes further by rebuilding the business engine itself, so founders feel the difference in execution, clarity, and control.</p>
+    </div>
+    <div class="grid differ-grid">
+      <div class="card diff-card reveal delay-1"><div class="num">01</div><h3>Three Systems. One Engagement.</h3><p>Profit, talent, and operation are solved together because they affect one another in real business life.</p></div>
+      <div class="card diff-card reveal delay-2"><div class="num">02</div><h3>Architecture, Not Motivation</h3><p>We build dashboards, workflows, compensation logic, and decision systems you can actually use.</p></div>
+      <div class="card diff-card reveal delay-3"><div class="num">03</div><h3>Rare Founder Background</h3><p>Internal audit, banking, and entrepreneurship combined into one practical consulting lens.</p></div>
+      <div class="card diff-card reveal delay-1"><div class="num">04</div><h3>Bootcamps + Real Implementation</h3><p>FAAST stays through the messy middle until the system is embedded and understood.</p></div>
+      <div class="card diff-card reveal delay-2"><div class="num">05</div><h3>Compensation Architecture</h3><p>Align incentives so people are rewarded for the right results, not just for activity.</p></div>
+      <div class="card diff-card reveal delay-3"><div class="num">06</div><h3>KFI-Led Decisions</h3><p>Track financial indicators that influence profit, sustainability, and business health.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="background:linear-gradient(180deg,#0f173d,#13225b)">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="section-tag reveal">Our Services</div>
+        <h2 class="h1 reveal delay-1" style="margin-top:16px">SOLUTIONS THAT<br>MOVE THE BUSINESS</h2>
+      </div>
+      <p class="lead reveal delay-2"></p>
+    </div>
+    <div class="grid service-grid">
+      <a href="bootcamp.html" class="card service-card reveal delay-1">
+        <span class="card-sheen"></span>
+        <div class="sn">01 • Strategic Kickstart</div>
+        <h3 class="h3">Strategic Business Bootcamp</h3>
+        <p>Fast clarity for owners who need to identify leaks, bottlenecks, and the highest-priority moves now.</p>
+        <div class="service-footer"><div class="service-tags"><span>3 Days</span><span>KFI</span><span>RM2,997</span></div><span class="click-hint">View Details →</span></div>
+      </a>
+      <a href="tops.html" class="card service-card reveal delay-2">
+        <span class="card-sheen"></span>
+        <div class="sn">02 • Flagship Transformation</div>
+        <h3 class="h3">T.O.P.S. Implementation</h3>
+        <p>FAAST’s signature engagement to align talent, operation, and profit inside the business.</p>
+        <div class="service-footer"><div class="service-tags"><span>6 Months</span><span>Flagship</span><span>Full System</span></div><span class="click-hint">View Details →</span></div>
+      </a>
+      <a href="profit.html" class="card service-card reveal delay-3">
+        <span class="card-sheen"></span>
+        <div class="sn">03 • Money Clarity</div>
+        <h3 class="h3">Profit Architecture</h3>
+        <p>Build better visibility, better payout logic, and better financial decision-making across the company.</p>
+        <div class="service-footer"><div class="service-tags"><span>Financial</span><span>KFI Dashboard</span></div><span class="click-hint">View Details →</span></div>
+      </a>
+      <a href="talent.html" class="card service-card reveal delay-1">
+        <span class="card-sheen"></span>
+        <div class="sn">04 • Team Enablement</div>
+        <h3 class="h3">Talent &amp; Culture Build</h3>
+        <p>Create role clarity, stronger communication, and an accountability culture that scales.</p>
+        <div class="service-footer"><div class="service-tags"><span>People</span><span>Career Path</span></div><span class="click-hint">View Details →</span></div>
+      </a>
+      <a href="operations.html" class="card service-card reveal delay-2">
+        <span class="card-sheen"></span>
+        <div class="sn">05 • Systemise Execution</div>
+        <h3 class="h3">Operations Systemisation</h3>
+        <p>Turn messy execution into workflows, SOPs, and consistent operational follow-through.</p>
+        <div class="service-footer"><div class="service-tags"><span>SOP</span><span>Workflows</span></div><span class="click-hint">View Details →</span></div>
+      </a>
+      <a href="advisory.html" class="card service-card reveal delay-3">
+        <span class="card-sheen"></span>
+        <div class="sn">06 • Ongoing Leadership Support</div>
+        <h3 class="h3">Executive Advisory</h3>
+        <p>Strategic counsel for founders who need sharper decision support as they scale.</p>
+        <div class="service-footer"><div class="service-tags"><span>Retainer</span><span>Strategic</span></div><span class="click-hint">View Details →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="founder">
+  <div class="container founder-grid">
+    <div class="founder-photo-wrap reveal delay-1">
+      <div class="photo-placeholder">
+        <img src="images/founder.jpg" alt="FAAST Founder">
+      </div>
+    </div>
+    <div class="founder-copy">
+      <div class="section-tag reveal">The Person Behind FAAST</div>
+      <h2 class="h1 reveal delay-1" style="margin:16px 0 10px">THE FOUNDER</h2>
+      <div class="eyebrow reveal delay-1" style="color:var(--red);margin-bottom:22px">Chief Architect • FAAST Consultancy</div>
+      <p class="text reveal delay-2" style="margin-bottom:14px">FAAST was built by a founder with a rare combination: <strong style="color:#fff">internal audit, banking, and entrepreneurship</strong>. That means the advice is grounded in real business mechanics, not just theory.</p>
+      <p class="text reveal delay-3" style="margin-bottom:22px">The FAAST methodology comes from financial deep-dives, systems thinking, and the pursuit of helping business owners gain <strong style="color:#fff">more time, more freedom, and more profit</strong>. The vision is to support <strong style="color:#fff">6,000 SEA business owners by 2036</strong>.</p>
+      <div class="chips reveal delay-4"><span class="chip red">Internal Audit</span><span class="chip blue">Banking Background</span><span class="chip purple">Entrepreneur</span><span class="chip red">SEA Focus</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="results" class="results">
+  <div class="container">
+    <div>
+      <div class="section-tag reveal">Founder Feedback</div>
+      <h2 class="h1 reveal delay-1" style="margin:16px 0 12px">WHAT REAL BUSINESS OWNERS<br><span class="serif" style="color:var(--red)">Say After Working With FAAST</span></h2>
+      <p class="lead reveal delay-2">A cleaner testimonial-style presentation so readers immediately understand this section is real client feedback, not just generic marketing claims.</p>
+    </div>
+
+    <div class="slider-shell reveal delay-3">
+      <div class="card slider-card" id="resultCard">
+        <div class="result-content">
+          <div class="feedback-pill">Client Feedback</div>
+          <div class="quote-mark">“</div>
+          <div class="result-metrics" id="resultMetrics"></div>
+          <p id="resultQuote"></p>
+          <div class="result-person">
+            <h4 id="resultName"></h4>
+            <div id="resultRole"></div>
+          </div>
+        </div>
+        <div class="result-side"><div class="badge" id="resultIndex">01 / 03</div><div class="result-side-note">Verified founder response</div></div>
+      </div>
+      <div class="slider-controls">
+        <div class="slider-nav">
+          <button class="icon-btn" id="prevBtn" aria-label="Previous result">←</button>
+          <button class="icon-btn" id="nextBtn" aria-label="Next result">→</button>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="section-tag" style="justify-content:center">Take the First Step</div>
+      <h2 class="h1">READY TO BUILD A BUSINESS<br>THAT RUNS <span class="serif" style="color:var(--red)">Without You?</span></h2>
+      <p class="lead" style="margin:0 auto 26px">Book a free 45-minute strategy session and uncover where profit is leaking, where systems are weak, and where the next growth move should be.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a href="contact.html" class="btn btn-primary">Book a Free Strategy Session</a>
+        <a href="mailto:hello@faast.co" class="btn btn-secondary">hello@faast.co</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div id="topsPopup" aria-hidden="true">
+  <div id="topsPopupInner">
+    <button id="topsPopupClose" aria-label="Close image preview">×</button>
+    <img src="images/tops-diagram.png" alt="TOPS Talent Operation Profit Diagram enlarged preview">
+  </div>
+</div>
+
+<div id="footer"></div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.14 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+const results = [
+  {
+    quote: 'For the first time, I actually understand where my profit goes. The KFI dashboard changed how we make decisions, and my team now owns more of the business without waiting for me every hour.',
+    name: 'Ahmad Faizal',
+    role: 'F&B Chain Owner, Kuala Lumpur',
+    metrics: ['KFI Clarity', 'Higher Accountability', 'Less Owner Dependency']
+  },
+  {
+    quote: 'Other consultants gave us reports. FAAST gave us a system and stayed to make sure it worked in real life. Revenue improved, but more importantly, the business became easier to lead.',
+    name: 'Sarah Lim',
+    role: 'Retail Business Owner, Penang',
+    metrics: ['System Implementation', 'Revenue Growth', 'Operational Stability']
+  },
+  {
+    quote: 'I came in thinking I had a marketing problem. I left understanding I had a systems and people problem. That clarity changed how I run the business every day.',
+    name: 'Razif Hamdan',
+    role: 'Manufacturing SME, Johor Bahru',
+    metrics: ['Strategic Clarity', 'People Alignment', 'Execution Discipline']
+  }
+];
+
+let current = 0;
+let autoTimer;
+
+const quoteEl = document.getElementById('resultQuote');
+const nameEl = document.getElementById('resultName');
+const roleEl = document.getElementById('resultRole');
+const metricsEl = document.getElementById('resultMetrics');
+const indexEl = document.getElementById('resultIndex');
+const dotsEl = document.getElementById('sliderDots');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+function renderDots(){
+  dotsEl.innerHTML = '';
+  results.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.className = i === current ? 'active' : '';
+    btn.setAttribute('aria-label', `Go to result ${i + 1}`);
+    btn.addEventListener('click', () => { current = i; updateSlider(); resetAuto(); });
+    dotsEl.appendChild(btn);
+  });
+}
+
+function updateSlider(){
+  const item = results[current];
+  quoteEl.textContent = item.quote;
+  nameEl.textContent = item.name;
+  roleEl.textContent = item.role;
+  indexEl.textContent = `${String(current + 1).padStart(2, '0')} / ${String(results.length).padStart(2, '0')}`;
+  metricsEl.innerHTML = item.metrics.map(metric => `<span>${metric}</span>`).join('');
+  renderDots();
+}
+
+function nextSlide(){
+  current = (current + 1) % results.length;
+  updateSlider();
+}
+
+function prevSlide(){
+  current = (current - 1 + results.length) % results.length;
+  updateSlider();
+}
+
+function startAuto(){
+  autoTimer = setInterval(nextSlide, 4500);
+}
+
+function resetAuto(){
+  clearInterval(autoTimer);
+  startAuto();
+}
+
+prevBtn.addEventListener('click', () => { prevSlide(); resetAuto(); });
+nextBtn.addEventListener('click', () => { nextSlide(); resetAuto(); });
+
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    const href = card.getAttribute('href');
+    if (!href || href === '#') return;
+    e.preventDefault();
+    document.querySelectorAll('.service-card').forEach(item => item.classList.remove('is-selected'));
+    card.classList.add('is-selected');
+    setTimeout(() => { window.location.href = href; }, 180);
+  });
+});
+
+updateSlider();
+startAuto();
+</script>
+
+<script>
+document.querySelectorAll('.service-card').forEach(function(card){
+  card.addEventListener('mouseenter', function(){ card.classList.add('is-hovered'); });
+  card.addEventListener('mouseleave', function(){ card.classList.remove('is-hovered'); });
+  card.addEventListener('click', function(){
+    document.querySelectorAll('.service-card.is-selected').forEach(function(el){ if(el!==card) el.classList.remove('is-selected'); });
+    card.classList.add('is-selected');
+  });
+});
+</script>
+
+
+<script>
+const topsImage = document.getElementById('topsImage');
+const topsPopup = document.getElementById('topsPopup');
+const topsPopupClose = document.getElementById('topsPopupClose');
+
+function closeTopsPopup(){
+  topsPopup.classList.remove('active');
+  topsPopup.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+if (topsImage && topsPopup) {
+  topsImage.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    topsPopup.classList.add('active');
+    topsPopup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+}
+
+if (topsPopupClose) topsPopupClose.addEventListener('click', function(e){
+  e.stopPropagation();
+  closeTopsPopup();
+});
+
+if (topsPopup) {
+  topsPopup.addEventListener('click', function(e){
+    if (e.target === topsPopup) closeTopsPopup();
+  });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape' && topsPopup && topsPopup.classList.contains('active')) {
+    closeTopsPopup();
+  }
+});
+</script>
+
+<script src="shared-layout.js"></script>
+</body>
+</html>
