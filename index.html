@@ -399,10 +399,62 @@ section,footer{padding:96px 24px}
 .stat-card{padding:18px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
 .stat-card strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1}
 .stat-card span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
-.hero-side{display:grid;gap:16px}
+.hero-side{display:grid;gap:18px;align-content:start}
 .hero-feature{padding:24px;border-radius:24px;background:rgba(9,16,50,.45);border:1px solid rgba(255,255,255,.08)}
 .hero-feature h4{font-size:15px;margin-bottom:8px}
 .hero-feature p{font-size:14px;line-height:1.7;color:var(--muted)}
+.hero-main{
+  padding:28px;
+  border-radius:28px;
+  background:
+    radial-gradient(circle at top right, rgba(239,36,66,.12), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(95,130,255,.12), transparent 32%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 22px 52px rgba(6,12,40,.22);
+}
+.hero-main h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:38px;
+  line-height:.96;
+  letter-spacing:.04em;
+  margin-bottom:12px;
+  color:#fff;
+}
+.hero-main p{
+  font-size:15px;
+  line-height:1.8;
+  color:rgba(255,255,255,.78);
+}
+.hero-mini-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.hero-bottom-band{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.hero-bottom-item{
+  padding:16px 14px;
+  border-radius:20px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.08);
+  min-height:100%;
+}
+.hero-bottom-item strong{
+  display:block;
+  font-size:14px;
+  color:#fff;
+  margin-bottom:6px;
+}
+.hero-bottom-item span{
+  display:block;
+  font-size:12px;
+  line-height:1.6;
+  color:rgba(255,255,255,.62);
+}
 .marquee{padding:18px 0;background:var(--red);overflow:hidden;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
 .marquee-track{display:flex;gap:24px;white-space:nowrap;animation:marquee 30s linear infinite}
 .marquee span{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.16em}
@@ -955,6 +1007,118 @@ section,footer{padding:96px 24px}
   font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-left:auto;justify-self:end;align-self:end;white-space:nowrap;transition:transform .22s ease, background .22s ease, border-color .22s ease, color .22s ease, box-shadow .22s ease
 }
 
+/* ===== PREMIUM MAINTENANCE BADGES ===== */
+.service-card.coming-soon{
+  position:relative;
+  overflow:hidden;
+}
+.service-card.coming-soon::before{
+  content:none !important;
+}
+.service-card.coming-soon::after{
+  box-shadow:none;
+}
+
+/* ===== SERVICE FOOTER FIX ===== */
+.service-footer{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.service-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.maintenance-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#fff;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.maintenance-badge::before{
+  content:"⚙";
+  font-size:11px;
+  line-height:1;
+}
+.service-card:nth-child(1) .maintenance-badge{
+  background:linear-gradient(135deg,#ffd84a,#ffbe2e);
+  color:#1d2139;
+  box-shadow:0 10px 24px rgba(255,216,74,.30);
+}
+.service-card:nth-child(2) .maintenance-badge{
+  background:linear-gradient(135deg,#7db0ff,#4f82ff);
+  box-shadow:0 10px 24px rgba(95,130,255,.32);
+}
+.service-card:nth-child(3) .maintenance-badge{
+  background:linear-gradient(135deg,#ff8aa0,#ef2442);
+  box-shadow:0 10px 24px rgba(239,36,66,.34);
+}
+.service-card:nth-child(4) .maintenance-badge{
+  background:linear-gradient(135deg,#8fffd1,#3dd8a0);
+  color:#10382a;
+  box-shadow:0 10px 24px rgba(61,216,160,.28);
+}
+.service-card:nth-child(5) .maintenance-badge{
+  background:linear-gradient(135deg,#c6a4ff,#8f64ff);
+  box-shadow:0 10px 24px rgba(156,111,255,.32);
+}
+.service-card:nth-child(6) .maintenance-badge{
+  background:linear-gradient(135deg,#ffb86b,#ff8c32);
+  color:#3d2100;
+  box-shadow:0 10px 24px rgba(255,184,107,.32);
+}
+
+.service-card.coming-soon .coming-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  z-index:3;
+  opacity:0;
+  transform:translateY(10px);
+  transition:.30s ease;
+  background:rgba(8,12,40,.32);
+  backdrop-filter:blur(2px);
+}
+.service-card.coming-soon .coming-overlay span{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;
+  letter-spacing:.20em;
+  color:#fff;
+}
+.service-card.coming-soon .coming-overlay small{
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.72);
+  margin-top:6px;
+}
+.service-card.coming-soon:hover .coming-overlay{
+  opacity:1;
+  transform:none;
+}
+
 .founder-grid{
   display:grid;
   grid-template-columns:minmax(320px, 460px) minmax(0, 1fr);
@@ -1148,6 +1312,12 @@ section,footer{padding:96px 24px}
   .hero-stats{
     grid-template-columns:repeat(3,1fr);
     gap:12px;
+  }
+  .hero-mini-grid{
+    grid-template-columns:1fr;
+  }
+  .hero-bottom-band{
+    grid-template-columns:1fr;
   }
   .stat-card strong{
     font-size:34px;
@@ -2865,20 +3035,36 @@ section .container > .lead[style*="margin-inline:auto"]{
 </div>
 </div>
 <div class="hero-side">
-<div class="hero-feature reveal delay-1">
-<div class="eyebrow" style="margin-bottom:10px">Profit</div>
-<h4>Measure what drives real profit</h4>
-<p>KFI dashboards, compensation architecture, and profit systems that make money visible.</p>
+<div class="hero-feature hero-main reveal delay-1">
+<div class="eyebrow" style="margin-bottom:12px">Why Growth Still Feels Heavy</div>
+<h3>You&apos;ve built the business. But the business still runs on you.</h3>
+<p>Sales depend on you. Decisions depend on you. Execution depends on you. FAAST helps turn owner-dependent growth into a structured business that can scale with more clarity, control, and consistency.</p>
 </div>
+<div class="hero-mini-grid">
 <div class="hero-feature reveal delay-2">
-<div class="eyebrow" style="margin-bottom:10px">Talent (People)</div>
-<h4>Build a team that thinks and acts like owners</h4>
-<p>Create hiring frameworks, career paths, and accountability cultures where your team can run without you.</p>
+<div class="eyebrow" style="margin-bottom:10px">The Problem</div>
+<h4>No structure behind growth</h4>
+<p>Every new outlet, new team member, or new customer adds more pressure because the system underneath has not been built to carry it.</p>
 </div>
 <div class="hero-feature reveal delay-3">
-<div class="eyebrow" style="margin-bottom:10px">Operation (Process)</div>
-<h4>Run on process, not personalities</h4>
-<p>SOPs, workflows, and blueprints that keep the business moving even when you are not in the room.</p>
+<div class="eyebrow" style="margin-bottom:10px">The Shift</div>
+<h4>From operator to system builder</h4>
+<p>Stop being the daily fixer. Start building a business where people, numbers, and execution move with less dependence on you.</p>
+</div>
+</div>
+<div class="hero-bottom-band reveal delay-4">
+<div class="hero-bottom-item">
+<strong>Clarity</strong>
+<span>Know what is really driving growth and drag.</span>
+</div>
+<div class="hero-bottom-item">
+<strong>Control</strong>
+<span>Run with structure instead of constant firefighting.</span>
+</div>
+<div class="hero-bottom-item">
+<strong>Scale</strong>
+<span>Grow without being the centre of every decision.</span>
+</div>
 </div>
 </div>
 </div>
@@ -3077,47 +3263,53 @@ section .container > .lead[style*="margin-inline:auto"]{
 <p class="lead reveal delay-2">Choose the engagement that fits your stage — from clarity and diagnosis to full implementation across Profit, Talent, and Operation.</p>
 </div>
 <div class="grid service-grid">
-<a class="card service-card reveal delay-1" href="bootcamp.html">
+<a class="card service-card coming-soon reveal delay-1" href="bootcamp.html">
 <span class="card-sheen"></span>
 <div class="sn">01 • 3-Day Transformation</div>
 <h3 class="h3 premium-subtitle">Strategic Business Bootcamp</h3>
 <p>Fast clarity for owners who need to identify leaks, bottlenecks, and the highest-priority moves now.</p>
-<div class="service-footer"><div class="service-tags"><span>3 Days</span><span>KFI</span><span>RM2,997</span></div><span class="click-hint">View Details →</span></div>
+<div class="service-footer"><div class="service-tags"><span>3 Days</span><span>KFI</span><span>RM2,997</span></div><div class="service-actions"><div class="maintenance-badge">Under Maintenance</div><span class="click-hint">Preview →</span></div></div>
+<div class="coming-overlay"><span>Coming Soon</span><small>Click to preview</small></div>
 </a>
-<a class="card service-card reveal delay-2" href="tops.html">
+<a class="card service-card coming-soon reveal delay-2" href="tops.html">
 <span class="card-sheen"></span>
 <div class="sn">02 • Full System Build</div>
 <h3 class="h3 premium-subtitle">Full Business System Build</h3>
 <p>Full business system build to align Talent, Operation, and Profit into one self-running engine.</p>
-<div class="service-footer"><div class="service-tags"><span>6 Months</span><span>Flagship</span><span>Full System</span></div><span class="click-hint">View Details →</span></div>
+<div class="service-footer"><div class="service-tags"><span>6 Months</span><span>Flagship</span><span>Full System</span></div><div class="service-actions"><div class="maintenance-badge">Under Maintenance</div><span class="click-hint">Preview →</span></div></div>
+<div class="coming-overlay"><span>Coming Soon</span><small>Click to preview</small></div>
 </a>
-<a class="card service-card reveal delay-3" href="profit.html">
+<a class="card service-card coming-soon reveal delay-3" href="profit.html">
 <span class="card-sheen"></span>
 <div class="sn">03 • Fix Your Profit</div>
 <h3 class="h3 premium-subtitle">Fix Your Profit — KFI &amp; Compensation</h3>
 <p>Fix your profit with KFI dashboards, compensation architecture, and clearer financial decision-making.</p>
-<div class="service-footer"><div class="service-tags"><span>Financial</span><span>KFI Dashboard</span></div><span class="click-hint">View Details →</span></div>
+<div class="service-footer"><div class="service-tags"><span>Financial</span><span>KFI Dashboard</span></div><div class="service-actions"><div class="maintenance-badge">Under Maintenance</div><span class="click-hint">Preview →</span></div></div>
+<div class="coming-overlay"><span>Coming Soon</span><small>Click to preview</small></div>
 </a>
-<a class="card service-card reveal delay-1" href="talent.html">
+<a class="card service-card coming-soon reveal delay-1" href="talent.html">
 <span class="card-sheen"></span>
 <div class="sn">04 • Team That Runs Without You</div>
 <h3 class="h3 premium-subtitle">Build a Team That Runs Without You</h3>
 <p>Build a team that runs without you through clearer roles, career paths, and accountability.</p>
-<div class="service-footer"><div class="service-tags"><span>People</span><span>Career Path</span></div><span class="click-hint">View Details →</span></div>
+<div class="service-footer"><div class="service-tags"><span>People</span><span>Career Path</span></div><div class="service-actions"><div class="maintenance-badge">Under Maintenance</div><span class="click-hint">Preview →</span></div></div>
+<div class="coming-overlay"><span>Coming Soon</span><small>Click to preview</small></div>
 </a>
-<a class="card service-card reveal delay-2" href="operations.html">
+<a class="card service-card coming-soon reveal delay-2" href="operations.html">
 <span class="card-sheen"></span>
 <div class="sn">05 • Document &amp; Systemise</div>
 <h3 class="h3 premium-subtitle">Document, Systemise &amp; Step Back</h3>
 <p>Document, systemise, and step back with SOPs, workflows, and operating blueprints.</p>
-<div class="service-footer"><div class="service-tags"><span>SOP</span><span>Workflows</span></div><span class="click-hint">View Details →</span></div>
+<div class="service-footer"><div class="service-tags"><span>SOP</span><span>Workflows</span></div><div class="service-actions"><div class="maintenance-badge">Under Maintenance</div><span class="click-hint">Preview →</span></div></div>
+<div class="coming-overlay"><span>Coming Soon</span><small>Click to preview</small></div>
 </a>
-<a class="card service-card reveal delay-3" href="advisory.html">
+<a class="card service-card coming-soon reveal delay-3" href="advisory.html">
 <span class="card-sheen"></span>
 <div class="sn">06 • Strategic Partner</div>
 <h3 class="h3 premium-subtitle">Your Strategic Partner — Monthly Retainer</h3>
 <p>Stay supported with monthly strategic partnership as you scale with sharper decision-making.</p>
-<div class="service-footer"><div class="service-tags"><span>Retainer</span><span>Strategic</span></div><span class="click-hint">View Details →</span></div>
+<div class="service-footer"><div class="service-tags"><span>Retainer</span><span>Strategic</span></div><div class="service-actions"><div class="maintenance-badge">Under Maintenance</div><span class="click-hint">Preview →</span></div></div>
+<div class="coming-overlay"><span>Coming Soon</span><small>Click to preview</small></div>
 </a>
 </div>
 </div>
@@ -3281,7 +3473,8 @@ document.querySelectorAll('.service-card').forEach(card => {
     e.preventDefault();
     document.querySelectorAll('.service-card').forEach(item => item.classList.remove('is-selected'));
     card.classList.add('is-selected');
-    setTimeout(() => { window.location.href = href; }, 180);
+    const targetHref = card.classList.contains('coming-soon') ? 'maintenance.html' : href;
+    setTimeout(() => { window.location.href = targetHref; }, 180);
   });
 });
 

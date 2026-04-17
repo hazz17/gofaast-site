@@ -25,6 +25,7 @@ function initSharedNavbar() {
     const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
     if (path.includes('contact')) return 'contact';
+    if (path.includes('maintenance')) return 'maintenance';
 
     if (
       path.includes('bootcamp') ||
@@ -47,6 +48,10 @@ function initSharedNavbar() {
     });
   }
 
+  function clearActive() {
+    links.forEach(link => link.classList.remove('is-active'));
+  }
+
   function navOffset() {
     return (nav ? nav.offsetHeight : 80) + 16;
   }
@@ -66,7 +71,6 @@ function initSharedNavbar() {
 
   const pageType = currentPage();
 
-  /* ================= CLICK FIX ================= */
   if (toggle && dropdown) {
     toggle.addEventListener('click', function (e) {
       if (window.innerWidth > 820) {
@@ -88,6 +92,15 @@ function initSharedNavbar() {
           setActive('services');
           return;
         }
+
+        if (pageType === 'maintenance') {
+          e.preventDefault();
+          e.stopPropagation();
+
+          dropdown.classList.remove('active');
+          clearActive();
+          return;
+        }
       }
     });
 
@@ -98,7 +111,6 @@ function initSharedNavbar() {
     });
   }
 
-  /* ================= PAGE ACTIVE ================= */
   if (pageType === 'contact') {
     setActive('contact');
     return;
@@ -109,7 +121,11 @@ function initSharedNavbar() {
     return;
   }
 
-  /* ================= INDEX SECTION DETECTION ================= */
+  if (pageType === 'maintenance') {
+    clearActive();
+    return;
+  }
+
   function updateActive() {
     const scrollPos = window.scrollY + navOffset() + 4;
 

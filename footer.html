@@ -48,6 +48,28 @@
   margin-bottom:18px;
 }
 
+.footer-services-note{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin:-4px 0 16px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(239,36,66,.12);
+  border:1px solid rgba(239,36,66,.18);
+  color:#ff8aa0;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.footer-services-note::before{
+  content:"⚙";
+  font-size:11px;
+  line-height:1;
+}
+
 .footer-links,
 .footer-contact{
   list-style:none;
@@ -65,7 +87,7 @@
   text-decoration:none;
   font-size:15px;
   line-height:1.7;
-  transition:opacity .2s ease;
+  transition:opacity .2s ease, color .2s ease;
 }
 
 .footer-links a:hover{
@@ -107,7 +129,6 @@
   background:rgba(255,255,255,.04);
   font-size:12px;
   font-weight:700;
-  letter-spacing:.04em;
   color:#fff;
   text-decoration:none;
   transition:all .2s ease;
@@ -151,7 +172,6 @@
   color:#fff;
 }
 
-/* KEEP SAME LAYOUT ON MOBILE */
 @media (max-width:980px){
   .site-footer{
     overflow-x:auto;
@@ -237,13 +257,14 @@
 
       <div>
         <div class="footer-title">Services</div>
+        <div class="footer-services-note">Service pages under maintenance</div>
         <ul class="footer-links">
-          <li><a href="bootcamp.html">Business Bootcamp</a></li>
-          <li><a href="tops.html">T.O.P.S. Implementation</a></li>
-          <li><a href="profit.html">Profit Architecture</a></li>
-          <li><a href="talent.html">Talent &amp; Culture</a></li>
-          <li><a href="operations.html">Operations Systemisation</a></li>
-          <li><a href="advisory.html">Executive Advisory</a></li>
+          <li><a href="maintenance.html">Business Bootcamp</a></li>
+          <li><a href="maintenance.html">T.O.P.S. Implementation</a></li>
+          <li><a href="maintenance.html">Profit Architecture</a></li>
+          <li><a href="maintenance.html">Talent &amp; Culture</a></li>
+          <li><a href="maintenance.html">Operations Systemisation</a></li>
+          <li><a href="maintenance.html">Executive Advisory</a></li>
         </ul>
       </div>
 
