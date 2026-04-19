@@ -1004,6 +1004,244 @@
       border-radius:999px;
     }
 
+
+    /* ===== NEXT LEVEL SUCCESS POPUP ===== */
+    .success-popup{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(7,12,39,.62);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .28s ease, visibility .28s ease;
+      z-index:99999;
+    }
+
+    .success-popup.show{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+    }
+
+    .success-popup-card{
+      position:relative;
+      width:min(460px,100%);
+      padding:34px 30px 28px;
+      border-radius:28px;
+      text-align:center;
+      color:#fff;
+      background:
+        radial-gradient(circle at top right, rgba(239,36,66,.16), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(95,130,255,.18), transparent 34%),
+        linear-gradient(180deg, rgba(30,47,112,.98), rgba(20,32,84,.98));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 28px 70px rgba(3,8,30,.40),
+        inset 0 1px 0 rgba(255,255,255,.05);
+      transform:translateY(16px) scale(.96);
+      transition:transform .34s cubic-bezier(.22,1,.36,1);
+      overflow:hidden;
+    }
+
+    .success-popup.show .success-popup-card{
+      transform:translateY(0) scale(1);
+    }
+
+    .success-popup-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      opacity:.9;
+    }
+
+    .success-popup-card::after{
+      content:"";
+      position:absolute;
+      inset:auto -46px -50px auto;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(239,36,66,.16), transparent 68%);
+      opacity:.72;
+      pointer-events:none;
+      filter:blur(2px);
+    }
+
+    .success-popup-close{
+      position:absolute;
+      top:14px;
+      right:14px;
+      width:38px;
+      height:38px;
+      border:none;
+      border-radius:50%;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      font-size:18px;
+      cursor:pointer;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+      z-index:2;
+    }
+
+    .success-popup-close:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.16);
+    }
+
+    .success-popup-icon{
+      position:relative;
+      z-index:2;
+      width:84px;
+      height:84px;
+      margin:0 auto 18px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.20), transparent 36%),
+        linear-gradient(135deg,#ef2442,#ff5b77);
+      box-shadow:
+        0 20px 40px rgba(239,36,66,.28),
+        inset 0 1px 0 rgba(255,255,255,.20);
+      animation:successPulse 2.6s ease-in-out infinite;
+    }
+
+    .success-popup-icon::before{
+      content:"✓";
+      font-size:42px;
+      font-weight:800;
+      line-height:1;
+      color:#fff;
+      transform:translateY(-1px);
+    }
+
+    .success-popup-kicker{
+      position:relative;
+      z-index:2;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:#ffb7c3;
+    }
+
+    .success-popup h3{
+      position:relative;
+      z-index:2;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:54px;
+      line-height:.9;
+      letter-spacing:.04em;
+      margin-bottom:12px;
+      text-shadow:0 12px 28px rgba(0,0,0,.18);
+    }
+
+    .success-popup p{
+      position:relative;
+      z-index:2;
+      font-size:15px;
+      line-height:1.85;
+      color:rgba(255,255,255,.78);
+      max-width:340px;
+      margin:0 auto 22px;
+    }
+
+    .success-popup-actions{
+      position:relative;
+      z-index:2;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .success-popup-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-width:140px;
+      padding:12px 18px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+
+    .success-popup-btn.primary{
+      border:none;
+      background:linear-gradient(135deg,#ef2442,#ff5b77);
+      color:#fff;
+      box-shadow:0 14px 28px rgba(239,36,66,.22);
+    }
+
+    .success-popup-btn.primary:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(135deg,#ff415f,#ff6d86);
+    }
+
+    .success-popup-btn.secondary{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color:#fff;
+    }
+
+    .success-popup-btn.secondary:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.18);
+    }
+
+    @keyframes successPulse{
+      0%,100%{box-shadow:0 20px 40px rgba(239,36,66,.24), inset 0 1px 0 rgba(255,255,255,.20)}
+      50%{box-shadow:0 24px 52px rgba(239,36,66,.34), inset 0 1px 0 rgba(255,255,255,.20)}
+    }
+
+    @media (max-width:640px){
+      .success-popup-card{
+        padding:30px 22px 24px;
+        border-radius:24px;
+      }
+      .success-popup h3{
+        font-size:44px;
+      }
+      .success-popup-icon{
+        width:74px;
+        height:74px;
+      }
+      .success-popup-icon::before{
+        font-size:36px;
+      }
+      .success-popup-actions{
+        flex-direction:column;
+      }
+      .success-popup-btn{
+        width:100%;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -1078,59 +1316,27 @@
                 </div>
               </div>
 
-              <div class="field-grid">
-                <div>
-                  <label class="field-label" for="f-interest">What Are You Looking For?</label>
-                  <div class="custom-select" data-select>
-                    <button class="custom-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
-                      <span class="custom-select-value">Select a service</span>
-                      <span class="custom-select-arrow" aria-hidden="true"></span>
-                    </button>
-                    <div class="custom-select-menu" role="listbox">
-                      <button class="custom-select-option is-selected" type="button" data-value="">Select a service</button>
-                      <button class="custom-select-option" type="button" data-value="Strategic Business Bootcamp">Strategic Business Bootcamp</button>
-                      <button class="custom-select-option" type="button" data-value="T.O.P.S. Implementation">T.O.P.S. Implementation</button>
-                      <button class="custom-select-option" type="button" data-value="Profit Architecture">Profit Architecture</button>
-                      <button class="custom-select-option" type="button" data-value="Talent &amp; Culture Build">Talent &amp; Culture Build</button>
-                      <button class="custom-select-option" type="button" data-value="Operations Systemisation">Operations Systemisation</button>
-                      <button class="custom-select-option" type="button" data-value="Executive Advisory">Executive Advisory</button>
-                      <button class="custom-select-option" type="button" data-value="Not sure yet — need guidance">Not sure yet — need guidance</button>
-                    </div>
-                    <input type="hidden" id="f-interest" value="">
-                  </div>
-                </div>
-                <div>
-                  <label class="field-label" for="f-stage">Business Stage</label>
-                  <div class="custom-select" data-select>
-                    <button class="custom-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
-                      <span class="custom-select-value">Select stage</span>
-                      <span class="custom-select-arrow" aria-hidden="true"></span>
-                    </button>
-                    <div class="custom-select-menu" role="listbox">
-                      <button class="custom-select-option is-selected" type="button" data-value="">Select stage</button>
-                      <button class="custom-select-option" type="button" data-value="Startup / Early Stage">Startup / Early Stage</button>
-                      <button class="custom-select-option" type="button" data-value="Growing Team">Growing Team</button>
-                      <button class="custom-select-option" type="button" data-value="Scaling Operations">Scaling Operations</button>
-                      <button class="custom-select-option" type="button" data-value="Established Business">Established Business</button>
-                    </div>
-                    <input type="hidden" id="f-stage" value="">
-                  </div>
-                </div>
-              </div>
-
               <div>
-                <label class="field-label" for="f-msg">Tell Us About Your Business</label>
-                <textarea class="field-textarea" id="f-msg" placeholder="What feels messy right now? What is slowing growth? What outcome do you want from FAAST?"></textarea>
+                <label class="field-label" for="f-stage">Business Stage</label>
+                <div class="custom-select" data-select>
+                  <button class="custom-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="custom-select-value">Select stage</span>
+                    <span class="custom-select-arrow" aria-hidden="true"></span>
+                  </button>
+                  <div class="custom-select-menu" role="listbox">
+                    <button class="custom-select-option is-selected" type="button" data-value="">Select stage</button>
+                    <button class="custom-select-option" type="button" data-value="Startup / Early Stage">Startup / Early Stage</button>
+                    <button class="custom-select-option" type="button" data-value="Growing Team">Growing Team</button>
+                    <button class="custom-select-option" type="button" data-value="Scaling Operations">Scaling Operations</button>
+                    <button class="custom-select-option" type="button" data-value="Established Business">Established Business</button>
+                  </div>
+                  <input type="hidden" id="f-stage" value="">
+                </div>
               </div>
 
-              <button class="submit-btn" type="button" onclick="handleSubmit()">Submit Enquiry</button>
-              <p class="submit-note">This button currently prepares the enquiry through your email app. You can connect it later to a full email service, CRM, or form handler.</p>
+              <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()">Submit Enquiry</button>
+              <p class="submit-note">Your enquiry will be sent directly into the company enquiry sheet after Google Sheets is connected.</p>
             </div>
-          </div>
-
-          <div id="form-success" class="success-card">
-            <h3 class="h2">THANK YOU</h3>
-            <p>Your enquiry details are ready to send. The FAAST team will review the submission and get back to you as soon as possible.</p>
           </div>
         </div>
 
@@ -1216,41 +1422,77 @@
   <div id="footer"></div>
 
   <script>
-    function handleSubmit(){
-      const name = document.getElementById('f-name').value.trim();
-      const company = document.getElementById('f-company').value.trim();
-      const email = document.getElementById('f-email').value.trim();
-      const phone = document.getElementById('f-phone').value.trim();
-      const interest = document.getElementById('f-interest').value;
-      const stage = document.getElementById('f-stage').value;
-      const msg = document.getElementById('f-msg').value.trim();
+function showSuccessPopup() {
+  const popup = document.getElementById('successPopup');
+  popup.classList.add('show');
+  popup.setAttribute('aria-hidden', 'false');
+}
 
-      if(!name || !email || !msg){
-        alert('Please fill in Full Name, Email Address, and Tell Us About Your Business.');
-        return;
-      }
+function closeSuccessPopup(resetFocus) {
+  const popup = document.getElementById('successPopup');
+  popup.classList.remove('show');
+  popup.setAttribute('aria-hidden', 'true');
+  if (resetFocus) {
+    const firstField = document.getElementById('f-name');
+    if (firstField) firstField.focus();
+  }
+}
 
-      const subject = encodeURIComponent('FAAST Enquiry from ' + name);
-      const body = encodeURIComponent(
-`Full Name: ${name}
-Company / Brand: ${company || '-'}
-Email Address: ${email}
-Phone / WhatsApp: ${phone || '-'}
-Service Interested In: ${interest || '-'}
-Business Stage: ${stage || '-'}
+function resetEnquiryForm() {
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-company').value = '';
+  document.getElementById('f-email').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-stage').value = '';
 
-Business Details:
-${msg}`
-      );
+  document.querySelectorAll('[data-select]').forEach(select => {
+    const valueEl = select.querySelector('.custom-select-value');
+    const options = select.querySelectorAll('.custom-select-option');
+    if (valueEl) valueEl.textContent = 'Select stage';
+    options.forEach((opt, index) => {
+      opt.classList.toggle('is-selected', index === 0);
+    });
+  });
+}
 
-      document.getElementById('form-wrap').style.display = 'none';
-      document.getElementById('form-success').classList.add('show');
+function handleSubmit() {
+  const name = document.getElementById('f-name').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const stage = document.getElementById('f-stage').value;
+  const submitBtn = document.getElementById('submitBtn');
 
-      setTimeout(() => {
-        window.location.href = `mailto:datinfazmi@gmail.com?subject=${subject}&body=${body}`;
-      }, 500);
-    }
-  </script>
+  if (!name || !email) {
+    alert('Please fill in Full Name and Email Address.');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+
+  document.getElementById('gs-name').value = name;
+  document.getElementById('gs-company').value = company;
+  document.getElementById('gs-email').value = email;
+  document.getElementById('gs-phone').value = phone;
+  document.getElementById('gs-stage').value = stage;
+  document.getElementById('gs-page').value = window.location.href;
+  document.getElementById('gs-submittedAt').value = new Date().toISOString();
+
+  document.getElementById('gsheetForm').submit();
+
+  setTimeout(() => {
+    showSuccessPopup();
+    resetEnquiryForm();
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Enquiry';
+  }, 900);
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeSuccessPopup(false);
+});
+</script>
 
   <script>
     const observer = new IntersectionObserver((entries) => {
@@ -1315,6 +1557,40 @@ ${msg}`
       });
     })();
   </script>
+
+
+
+  <div id="successPopup" class="success-popup" aria-hidden="true">
+    <div class="success-popup-card">
+      <button class="success-popup-close" type="button" aria-label="Close" onclick="closeSuccessPopup()">×</button>
+      <div class="success-popup-icon"></div>
+      <div class="success-popup-kicker">Enquiry Submitted</div>
+      <h3>THANK YOU</h3>
+      <p>Your enquiry has been submitted successfully. The FAAST team can now review it directly from the connected Google Sheet.</p>
+      <div class="success-popup-actions">
+        <button class="success-popup-btn primary" type="button" onclick="closeSuccessPopup()">Done</button>
+        <button class="success-popup-btn secondary" type="button" onclick="closeSuccessPopup(true)">Submit Another</button>
+      </div>
+    </div>
+  </div>
+
+  <form
+    id="gsheetForm"
+    action="https://script.google.com/macros/s/AKfycbynss64BQak3q3d-xxlV95yplv0N2t6xoE45psD6hu2s1OpOj8YxNIoDCldjTTNlU_0Nw/exec"
+    method="POST"
+    target="hidden_iframe"
+    style="display:none;"
+  >
+    <input type="hidden" name="name" id="gs-name">
+    <input type="hidden" name="company" id="gs-company">
+    <input type="hidden" name="email" id="gs-email">
+    <input type="hidden" name="phone" id="gs-phone">
+    <input type="hidden" name="stage" id="gs-stage">
+    <input type="hidden" name="page" id="gs-page">
+    <input type="hidden" name="submittedAt" id="gs-submittedAt">
+  </form>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
 </body>
 </html>
