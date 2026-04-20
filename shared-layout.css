@@ -314,7 +314,7 @@ nav{
   padding:0;
   flex-shrink:0;
   position:relative;
-  z-index:100001;
+  z-index:1001;
 }
 
 .menu-toggle span{
@@ -345,7 +345,7 @@ nav{
   left:0;
   width:100%;
   height:100vh;
-  z-index:100000;
+  z-index:99999;
   overflow:hidden;
   background:
     radial-gradient(circle at top right, rgba(239,36,66,.18), transparent 25%),
@@ -374,6 +374,11 @@ nav{
   pointer-events:auto;
 }
 
+body.menu-open .menu-toggle{
+  opacity:0;
+  pointer-events:none;
+}
+
 .mobile-menu-topbar{
   position:absolute;
   top:20px;
@@ -400,6 +405,8 @@ nav{
   display:inline-flex;
   align-items:center;
   text-decoration:none;
+  position:relative;
+  z-index:5;
 }
 
 .mobile-menu-logo .real-logo{
@@ -459,6 +466,7 @@ nav{
   border:1px solid rgba(255,255,255,.1);
   transition:.25s ease;
   line-height:1;
+  z-index:5;
 }
 
 .mobile-close:hover{
