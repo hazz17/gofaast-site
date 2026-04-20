@@ -14,6 +14,7 @@ async function loadSharedLayout() {
 
   initSharedNavbar();
   initMobileMenu();
+  initSmoothScroll();
 }
 
 function initSharedNavbar() {
@@ -214,6 +215,28 @@ function initMobileMenu() {
     if (window.innerWidth > 820) {
       closeMenu();
     }
+  });
+}
+
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      e.preventDefault();
+
+      const nav = document.querySelector('nav');
+      const navHeight = nav ? nav.offsetHeight : 80;
+
+      window.scrollTo({
+        top: target.offsetTop - navHeight - 10,
+        behavior: 'smooth'
+      });
+    });
   });
 }
 
