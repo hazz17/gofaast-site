@@ -265,6 +265,17 @@
     .form-stack{display:flex;flex-direction:column;gap:16px}
     .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 
+    .phone-group{
+      display:grid;
+      grid-template-columns:minmax(150px,190px) 1fr;
+      gap:12px;
+      align-items:stretch
+    }
+
+    .country-select{
+      z-index:8;
+    }
+
     .field-label{
       display:block;
       margin-bottom:8px;
@@ -313,6 +324,25 @@
       resize:vertical;
       line-height:1.7;
       min-height:160px
+    }
+
+    .field-input.is-invalid,
+    .field-textarea.is-invalid,
+    .custom-select.is-invalid .custom-select-trigger{
+      border-color:rgba(239,36,66,.55) !important;
+      box-shadow:0 0 0 4px rgba(239,36,66,.14) !important;
+    }
+
+    .field-error{
+      display:none;
+      margin-top:8px;
+      font-size:12px;
+      line-height:1.5;
+      color:#ff9fb0;
+    }
+
+    .field-error.show{
+      display:block;
     }
 
     .submit-btn{
@@ -519,6 +549,7 @@
 
     @media (max-width:900px){
       .services-grid,.services-only-links,.faq-grid,.field-grid,.quick-grid{grid-template-columns:1fr}
+      .phone-group{grid-template-columns:1fr}
     }
 
     @media (max-width:768px){
@@ -1223,173 +1254,6 @@
       }
     }
 
-
-    @media (max-width:1100px){
-      .hero-grid,
-      .contact-shell{
-        grid-template-columns:1fr !important;
-      }
-
-      .hero-copy .display{
-        max-width:none !important;
-      }
-
-      .hero-side{
-        padding-top:0 !important;
-      }
-    }
-
-    @media (max-width:768px){
-      body{
-        padding-top:82px !important;
-      }
-
-      section,footer{
-        padding:72px 18px !important;
-      }
-
-      .page-hero{
-        padding:34px 18px 18px !important;
-      }
-
-      .hero-card,
-      .contact-card,
-      .info-card{
-        padding:28px 20px !important;
-        border-radius:24px !important;
-      }
-
-      .hero-grid,
-      .contact-shell,
-      .field-grid,
-      .quick-grid,
-      .faq-grid{
-        grid-template-columns:1fr !important;
-        gap:18px !important;
-      }
-
-      .hero-copy .display{
-        font-size:clamp(40px,12.5vw,64px) !important;
-        line-height:.94 !important;
-        max-width:none !important;
-      }
-
-      .hero-copy .lead,
-      .lead{
-        font-size:15px !important;
-        line-height:1.75 !important;
-      }
-
-      .hero-badges{
-        gap:8px !important;
-      }
-
-      .badge{
-        width:100%;
-        justify-content:center;
-        text-align:center;
-      }
-
-      .contact-header{
-        margin-bottom:22px !important;
-      }
-
-      .field-input,
-      .field-select,
-      .field-textarea,
-      .custom-select-trigger{
-        min-height:52px;
-        font-size:14px !important;
-      }
-
-      .field-textarea{
-        min-height:150px !important;
-      }
-
-      .submit-btn{
-        min-height:54px;
-      }
-
-      .info-item,
-      .quick-card,
-      .faq-card,
-      .hero-side-card{
-        padding:18px !important;
-        border-radius:20px !important;
-      }
-
-      .faq-card h3{
-        font-size:22px !important;
-      }
-
-      .success-popup{
-        padding:18px !important;
-      }
-
-      .success-popup-card{
-        width:min(100%, 420px) !important;
-      }
-    }
-
-    @media (max-width:560px){
-      .breadcrumb{
-        flex-wrap:wrap;
-        gap:6px;
-      }
-
-      .display{
-        font-size:clamp(36px,12vw,52px) !important;
-      }
-
-      .h1{
-        font-size:clamp(30px,11vw,42px) !important;
-      }
-
-      .section-tag{
-        font-size:10px !important;
-        letter-spacing:.22em !important;
-      }
-
-      .hero-card,
-      .contact-card,
-      .info-card{
-        padding:24px 16px !important;
-      }
-
-      .hero-side,
-      .info-stack,
-      .form-stack,
-      .quick-grid,
-      .faq-grid{
-        gap:14px !important;
-      }
-
-      .info-item{
-        gap:12px !important;
-      }
-
-      .info-icon{
-        width:38px !important;
-        height:38px !important;
-        border-radius:12px !important;
-        font-size:16px !important;
-      }
-
-      .custom-select-menu{
-        border-radius:16px !important;
-      }
-
-      .custom-select-option{
-        border-radius:12px !important;
-        padding:11px 12px !important;
-      }
-
-      .submit-note{
-        font-size:10px !important;
-        line-height:1.7 !important;
-      }
-    }
-
 </style>
 </head>
 <body>
@@ -1446,6 +1310,7 @@
                 <div>
                   <label class="field-label" for="f-name">Full Name</label>
                   <input class="field-input" id="f-name" type="text" placeholder="Your full name">
+                  <div class="field-error" id="err-name">Name must contain letters only.</div>
                 </div>
                 <div>
                   <label class="field-label" for="f-company">Company / Brand</label>
@@ -1457,10 +1322,35 @@
                 <div>
                   <label class="field-label" for="f-email">Email Address</label>
                   <input class="field-input" id="f-email" type="email" placeholder="you@company.com">
+                  <div class="field-error" id="err-email">Enter a valid email address.</div>
                 </div>
                 <div>
                   <label class="field-label" for="f-phone">Phone / WhatsApp</label>
-                  <input class="field-input" id="f-phone" type="text" placeholder="+60 ...">
+                  <div class="phone-group">
+                    <div class="custom-select country-select" data-select>
+                      <button class="custom-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                        <span class="custom-select-value">+60 Malaysia</span>
+                        <span class="custom-select-arrow" aria-hidden="true"></span>
+                      </button>
+                      <div class="custom-select-menu" role="listbox">
+                        <button class="custom-select-option is-selected" type="button" data-value="+60" data-label="+60 Malaysia">+60 Malaysia</button>
+                        <button class="custom-select-option" type="button" data-value="+65" data-label="+65 Singapore">+65 Singapore</button>
+                        <button class="custom-select-option" type="button" data-value="+62" data-label="+62 Indonesia">+62 Indonesia</button>
+                        <button class="custom-select-option" type="button" data-value="+66" data-label="+66 Thailand">+66 Thailand</button>
+                        <button class="custom-select-option" type="button" data-value="+63" data-label="+63 Philippines">+63 Philippines</button>
+                        <button class="custom-select-option" type="button" data-value="+673" data-label="+673 Brunei">+673 Brunei</button>
+                        <button class="custom-select-option" type="button" data-value="+84" data-label="+84 Vietnam">+84 Vietnam</button>
+                        <button class="custom-select-option" type="button" data-value="+91" data-label="+91 India">+91 India</button>
+                        <button class="custom-select-option" type="button" data-value="+61" data-label="+61 Australia">+61 Australia</button>
+                        <button class="custom-select-option" type="button" data-value="+44" data-label="+44 United Kingdom">+44 United Kingdom</button>
+                      </div>
+                      <input type="hidden" id="f-country-code" value="+60">
+                    </div>
+                    <div>
+                      <input class="field-input" id="f-phone" type="tel" inputmode="numeric" placeholder="Phone number only">
+                      <div class="field-error" id="err-phone">Phone number must contain digits only.</div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -1522,6 +1412,7 @@
                   F-2-28, Vista Alam, Jalan Ikhtisas 14/1,<br>
                   Seksyen 14, 40000 Shah Alam,<br>
                   Selangor.
+                  <br><br>
 </div>
               </div>
             </div>
@@ -1587,15 +1478,33 @@ function resetEnquiryForm() {
   document.getElementById('f-company').value = '';
   document.getElementById('f-email').value = '';
   document.getElementById('f-phone').value = '';
+  document.getElementById('f-country-code').value = '+60';
   document.getElementById('f-stage').value = '';
+
+  document.querySelectorAll('.field-error').forEach(el => el.classList.remove('show'));
+  document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
 
   document.querySelectorAll('[data-select]').forEach(select => {
     const valueEl = select.querySelector('.custom-select-value');
     const options = select.querySelectorAll('.custom-select-option');
-    if (valueEl) valueEl.textContent = 'Select stage';
+    const hidden = select.querySelector('input[type="hidden"]');
+    const isCountry = select.classList.contains('country-select');
+
+    if (isCountry) {
+      if (valueEl) valueEl.textContent = '+60 Malaysia';
+      if (hidden) hidden.value = '+60';
+    } else {
+      if (valueEl) valueEl.textContent = 'Select stage';
+      if (hidden) hidden.value = '';
+    }
+
     options.forEach((opt, index) => {
       opt.classList.toggle('is-selected', index === 0);
     });
+
+    select.classList.remove('open', 'is-invalid');
+    const trigger = select.querySelector('.custom-select-trigger');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
   });
 }
 
@@ -1603,14 +1512,49 @@ function handleSubmit() {
   const name = document.getElementById('f-name').value.trim();
   const company = document.getElementById('f-company').value.trim();
   const email = document.getElementById('f-email').value.trim();
+  const countryCode = document.getElementById('f-country-code').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
   const stage = document.getElementById('f-stage').value;
   const submitBtn = document.getElementById('submitBtn');
 
-  if (!name || !email) {
-    alert('Please fill in Full Name and Email Address.');
-    return;
+  const nameInput = document.getElementById('f-name');
+  const emailInput = document.getElementById('f-email');
+  const phoneInput = document.getElementById('f-phone');
+  const countrySelect = document.querySelector('.country-select');
+
+  const errName = document.getElementById('err-name');
+  const errEmail = document.getElementById('err-email');
+  const errPhone = document.getElementById('err-phone');
+
+  [nameInput, emailInput, phoneInput].forEach(el => el.classList.remove('is-invalid'));
+  if (countrySelect) countrySelect.classList.remove('is-invalid');
+  document.querySelectorAll('.field-error').forEach(el => el.classList.remove('show'));
+
+  const nameOk = /^[A-Za-z\s]+$/.test(name);
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const phoneOk = /^\d+$/.test(phone);
+
+  let hasError = false;
+
+  if (!name || !nameOk) {
+    nameInput.classList.add('is-invalid');
+    errName.classList.add('show');
+    hasError = true;
   }
+
+  if (!email || !emailOk) {
+    emailInput.classList.add('is-invalid');
+    errEmail.classList.add('show');
+    hasError = true;
+  }
+
+  if (!phone || !phoneOk) {
+    phoneInput.classList.add('is-invalid');
+    errPhone.classList.add('show');
+    hasError = true;
+  }
+
+  if (hasError) return;
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting...';
@@ -1618,7 +1562,7 @@ function handleSubmit() {
   document.getElementById('gs-name').value = name;
   document.getElementById('gs-company').value = company;
   document.getElementById('gs-email').value = email;
-  document.getElementById('gs-phone').value = phone;
+  document.getElementById('gs-phone').value = `${countryCode}${phone}`;
   document.getElementById('gs-stage').value = stage;
   document.getElementById('gs-page').value = window.location.href;
   document.getElementById('gs-submittedAt').value = new Date().toISOString();
@@ -1671,6 +1615,7 @@ document.addEventListener('keydown', function(e) {
 
         trigger.addEventListener('click', function(e){
           e.preventDefault();
+          select.classList.remove('is-invalid');
           const isOpen = select.classList.contains('open');
           closeAll(select);
           select.classList.toggle('open', !isOpen);
@@ -1681,7 +1626,7 @@ document.addEventListener('keydown', function(e) {
           option.addEventListener('click', function(e){
             e.preventDefault();
             const value = option.getAttribute('data-value') || '';
-            const label = option.textContent.trim();
+            const label = option.getAttribute('data-label') || option.textContent.trim();
             valueEl.textContent = label;
             hidden.value = value;
             options.forEach(o => o.classList.remove('is-selected'));
