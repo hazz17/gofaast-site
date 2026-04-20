@@ -79,7 +79,6 @@ function initSharedNavbar() {
         if (pageType === 'index') {
           e.preventDefault();
           e.stopPropagation();
-
           dropdown.classList.remove('active');
           scrollToSection('services');
           setActive('services');
@@ -89,7 +88,6 @@ function initSharedNavbar() {
         if (pageType === 'service-page') {
           e.preventDefault();
           e.stopPropagation();
-
           dropdown.classList.remove('active');
           setActive('services');
           return;
@@ -98,7 +96,6 @@ function initSharedNavbar() {
         if (pageType === 'maintenance') {
           e.preventDefault();
           e.stopPropagation();
-
           dropdown.classList.remove('active');
           clearActive();
           return;
