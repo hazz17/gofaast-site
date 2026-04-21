@@ -1035,8 +1035,7 @@
       .field-input,
       .custom-select,
       .custom-select-trigger,
-      .submit-btn,
-      .phone-inline-wrap{
+      .submit-btn{
         width:100% !important;
         max-width:100% !important;
         min-width:0 !important;
@@ -1050,16 +1049,21 @@
       .phone-inline-wrap{
         display:flex !important;
         align-items:stretch !important;
+        width:100% !important;
+        min-height:54px !important;
+        height:54px !important;
         border-radius:16px !important;
-        overflow:hidden !important;
+        overflow:visible !important;
+        position:relative !important;
       }
 
       .custom-select.country-inline-select{
-        flex:0 0 88px !important;
-        width:88px !important;
-        min-width:88px !important;
-        max-width:88px !important;
-        z-index:auto !important;
+        flex:0 0 92px !important;
+        width:92px !important;
+        min-width:92px !important;
+        max-width:92px !important;
+        position:relative !important;
+        z-index:50 !important;
       }
 
       .custom-select.country-inline-select .custom-select-trigger{
@@ -1067,6 +1071,7 @@
         min-width:100% !important;
         max-width:100% !important;
         min-height:54px !important;
+        height:54px !important;
         padding:0 28px 0 12px !important;
         border-radius:16px 0 0 16px !important;
         border-right:1px solid rgba(255,255,255,.10) !important;
@@ -1077,21 +1082,40 @@
         width:auto !important;
         min-width:0 !important;
         min-height:54px !important;
+        height:54px !important;
         padding:0 14px !important;
         border-radius:0 16px 16px 0 !important;
       }
 
-      .custom-select{
+      .custom-select.country-inline-select .custom-select-menu{
+        position:absolute !important;
+        top:calc(100% + 10px) !important;
+        left:0 !important;
+        right:auto !important;
+        width:220px !important;
+        min-width:220px !important;
+        max-width:220px !important;
+        margin-top:0 !important;
+        z-index:9999 !important;
+        display:none;
+        opacity:0;
+        visibility:hidden;
+        transform:none !important;
+        max-height:260px !important;
+        overflow:auto !important;
+      }
+
+      .custom-select.country-inline-select.open .custom-select-menu{
+        display:grid !important;
+        opacity:1 !important;
+        visibility:visible !important;
+      }
+
+      .custom-select:not(.country-inline-select){
         position:relative !important;
         z-index:auto !important;
       }
 
-      .custom-select.open{
-        z-index:auto !important;
-      }
-
-      .custom-select-menu,
-      .custom-select.country-inline-select .custom-select-menu,
       .custom-select:not(.country-inline-select) .custom-select-menu{
         position:static !important;
         top:auto !important;
@@ -1111,7 +1135,7 @@
         z-index:auto !important;
       }
 
-      .custom-select.open .custom-select-menu{
+      .custom-select:not(.country-inline-select).open .custom-select-menu{
         display:grid !important;
         opacity:1 !important;
         visibility:visible !important;
@@ -1188,10 +1212,10 @@
       }
 
       .custom-select.country-inline-select{
-        flex:0 0 82px !important;
-        width:82px !important;
-        min-width:82px !important;
-        max-width:82px !important;
+        flex:0 0 88px !important;
+        width:88px !important;
+        min-width:88px !important;
+        max-width:88px !important;
       }
 
       .custom-select.country-inline-select .custom-select-trigger{
@@ -1200,6 +1224,12 @@
 
       .phone-inline-input{
         padding:0 12px !important;
+      }
+
+      .custom-select.country-inline-select .custom-select-menu{
+        width:210px !important;
+        min-width:210px !important;
+        max-width:210px !important;
       }
     }
   </style>
@@ -1215,7 +1245,7 @@
           <div class="hero-copy">
             <div class="breadcrumb reveal visible"><a href="index.html">Home</a><span>•</span><span>Contact</span></div>
             <div class="section-tag reveal visible delay-1">Contact FAAST</div>
-            <h1 class="display reveal visible delay-2">LET’S BUILD A <span class="serif" style="color:var(--red)">Stronger Business</span></h1>
+            <h1 class="display reveal visible delay-2">LET’S BUILD A <span class="serif">Stronger Business</span></h1>
             <p class="lead reveal visible delay-3">Share where your business feels stuck, messy, or ready for the next level. We will review it and come back with the clearest next step.</p>
             <div class="hero-badges reveal visible delay-4">
               <span class="badge">Founder Conversations</span>
@@ -1250,7 +1280,7 @@
           <div id="form-wrap">
             <div class="contact-header">
               <div class="section-tag reveal">Book a Call</div>
-              <h2 class="h1 reveal delay-1">TELL US <span class="serif" style="color:var(--red)">What You Need</span></h2>
+              <h2 class="h1 reveal delay-1">TELL US <span class="serif">What You Need</span></h2>
               <p class="text reveal delay-2">Fill in the form below and give enough context so the team can respond properly. Keep it simple, but useful.</p>
             </div>
 
@@ -1329,7 +1359,7 @@
 
         <div class="info-card reveal delay-1">
           <div class="section-tag reveal visible">Contact Details</div>
-          <h2 class="h1 reveal visible delay-1">LET’S MAKE THE <span class="serif" style="color:var(--red)">Next Step Clear</span></h2>
+          <h2 class="h1 reveal visible delay-1">LET’S MAKE THE <span class="serif">Next Step Clear</span></h2>
           <p class="text reveal visible delay-2">If you already know what you need, reach out directly. If not, share the business situation and we will help guide the right starting point.</p>
 
           <div class="info-stack">
@@ -1381,7 +1411,7 @@
   <section class="faq-section">
     <div class="container">
       <div class="section-tag reveal">How It Works</div>
-      <h2 class="h1 reveal delay-1" style="margin-bottom:26px">WHAT HAPPENS <span class="serif" style="color:var(--red)">After You Submit</span></h2>
+      <h2 class="h1 reveal delay-1" style="margin-bottom:26px">WHAT HAPPENS <span class="serif">After You Submit</span></h2>
       <div class="faq-grid">
         <div class="faq-card reveal delay-1">
           <h3>01. WE REVIEW</h3>
@@ -1632,4 +1662,4 @@
     });
   </script>
 </body>
-</html>
+</html>UP
