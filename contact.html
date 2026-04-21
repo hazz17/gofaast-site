@@ -1,66 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <!-- BASIC -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- TITLE -->
   <title>Contact | FAAS Management Consultancy</title>
 
-  <!-- SEO -->
   <meta name="description" content="Contact FAAST Management Consultancy. Get clarity and structure for your business growth across Talent, Operation, and Profit.">
   <meta name="keywords" content="FAAST, business consultancy Malaysia, KPI, KFI, business growth, Shah Alam consultancy">
   <meta name="author" content="FAAS Management Consultancy">
 
-  <!-- FAVICON -->
   <link rel="icon" href="/gofaast-site/images/faast-icon.png" type="image/png">
   <link rel="shortcut icon" href="/gofaast-site/images/faast-icon.png" type="image/png">
   <link rel="apple-touch-icon" href="/gofaast-site/images/faast-icon.png">
 
-  <!-- THEME COLOR -->
   <meta name="theme-color" content="#0b1440">
-
-  <!-- OPEN GRAPH -->
   <meta property="og:title" content="Contact FAAST Consultancy">
   <meta property="og:description" content="Build structured, scalable and sustainable business systems with FAAST.">
   <meta property="og:image" content="images/faast-icon.png">
   <meta property="og:type" content="website">
 
-  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-
-  <!-- GLOBAL CSS -->
   <link rel="stylesheet" href="shared-layout.css">
+
   <style>
     :root{
-      --bg:#111c4e;
-      --bg2:#162664;
-      --surface:#1b2b69;
-      --surface2:#213372;
-      --surface3:#1f2f70;
       --text:#f7f8fc;
-      --muted:rgba(255,255,255,.72);
-      --muted2:rgba(255,255,255,.52);
+      --muted:rgba(255,255,255,.74);
+      --muted-soft:rgba(255,255,255,.54);
       --red:#ef2442;
-      --red2:#ff4a67;
-      --stroke:rgba(255,255,255,.08);
-      --shadow:0 18px 46px rgba(3,8,30,.22);
-      --radius:24px;
+      --red-soft:#ff5d77;
+      --line:rgba(255,255,255,.10);
+      --line-strong:rgba(255,255,255,.16);
+      --card-top:rgba(255,255,255,.075);
+      --card-bottom:rgba(255,255,255,.028);
+      --shadow-main:0 28px 70px rgba(2,8,32,.34);
+      --shadow-soft:0 18px 44px rgba(3,8,30,.22);
       --container:1200px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
+
     body{
       font-family:'Manrope',sans-serif;
       background:linear-gradient(180deg,#101a49 0%,#13225b 100%);
       color:var(--text);
       overflow-x:hidden;
-      padding-top:96px
+      padding-top:96px;
     }
 
     body::before{
@@ -70,9 +58,9 @@
       pointer-events:none;
       z-index:-2;
       background:
-        radial-gradient(circle at 12% 18%, rgba(95,130,255,.14), transparent 22%),
-        radial-gradient(circle at 84% 14%, rgba(239,36,66,.10), transparent 20%),
-        radial-gradient(circle at 72% 72%, rgba(156,111,255,.10), transparent 18%),
+        radial-gradient(circle at 10% 18%, rgba(95,130,255,.16), transparent 22%),
+        radial-gradient(circle at 88% 14%, rgba(239,36,66,.12), transparent 20%),
+        radial-gradient(circle at 75% 72%, rgba(156,111,255,.10), transparent 18%),
         linear-gradient(180deg,#0f1a4b 0%,#13225b 46%,#101a49 100%);
     }
 
@@ -85,9 +73,8 @@
       opacity:.18;
       background-image:radial-gradient(rgba(255,255,255,.42) .6px, transparent .6px);
       background-size:26px 26px;
-      mask-image:linear-gradient(180deg,rgba(0,0,0,.32),transparent 85%);
+      mask-image:linear-gradient(180deg,rgba(0,0,0,.36),transparent 85%);
     }
-
 
     a{text-decoration:none;color:inherit}
     section,footer{padding:96px 24px}
@@ -102,74 +89,94 @@
       font-weight:800;
       letter-spacing:.28em;
       text-transform:uppercase;
-      margin-bottom:16px
+      margin-bottom:16px;
     }
 
-    .section-tag:before{
+    .section-tag::before{
       content:"";
       width:30px;
       height:1px;
-      background:var(--red)
+      background:linear-gradient(90deg,var(--red),rgba(239,36,66,.25));
     }
 
-    .display,.h1,.h2,.h3,.bebas{
+    .display,.h1{
       font-family:'Bebas Neue',sans-serif;
-      letter-spacing:.02em
+      letter-spacing:.02em;
     }
 
     .display{font-size:clamp(52px,7.2vw,98px);line-height:.9}
     .h1{font-size:clamp(40px,5vw,72px);line-height:.95}
-    .h2{font-size:clamp(34px,4vw,60px);line-height:.95}
     .lead{font-size:18px;line-height:1.85;color:var(--muted)}
     .text{font-size:15px;line-height:1.8;color:var(--muted)}
     .serif{font-family:'DM Serif Display',serif;font-style:italic;letter-spacing:0}
 
-    .card{
-      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.025));
-      border:1px solid var(--stroke);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow)
-    }
-
     .page-hero{
       padding:58px 24px 28px;
       background:
-        radial-gradient(circle at top right, rgba(239,36,66,.10), transparent 24%),
-        radial-gradient(circle at bottom left, rgba(95,130,255,.12), transparent 30%),
-        linear-gradient(180deg,#101a46 0%, #122059 100%)
+        radial-gradient(circle at top right, rgba(239,36,66,.11), transparent 24%),
+        radial-gradient(circle at bottom left, rgba(95,130,255,.14), transparent 30%),
+        linear-gradient(180deg,#101a46 0%, #122059 100%);
+    }
+
+    .hero-card,
+    .contact-card,
+    .info-card,
+    .faq-card{
+      position:relative;
+      overflow:visible;
+      border:1px solid var(--line);
+      background:
+        radial-gradient(circle at top right, rgba(239,36,66,.09), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(95,130,255,.09), transparent 30%),
+        linear-gradient(180deg,var(--card-top),var(--card-bottom));
+      box-shadow:var(--shadow-main);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+    }
+
+    .hero-card::before,
+    .contact-card::before,
+    .info-card::before,
+    .faq-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      pointer-events:none;
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0) 36%);
+    }
+
+    .hero-card::after,
+    .contact-card::after,
+    .info-card::after{
+      content:"";
+      position:absolute;
+      right:-36px;
+      bottom:-42px;
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      pointer-events:none;
+      background:radial-gradient(circle, rgba(239,36,66,.14), transparent 68%);
+      filter:blur(2px);
+      opacity:.75;
     }
 
     .hero-card{
       padding:52px 44px;
       border-radius:38px;
-      position:relative;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at top right, rgba(239,36,66,.12), transparent 24%),
-        radial-gradient(circle at left bottom, rgba(95,130,255,.14), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:0 34px 88px rgba(3,8,30,.30);
-      backdrop-filter:blur(12px);
     }
 
-    .hero-card::before,
-    .contact-card::before,
-    .info-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      border-radius:inherit;
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
-      opacity:.9;
+    .contact-card,.info-card{
+      padding:40px;
+      border-radius:32px;
     }
 
     .hero-grid{
       display:grid;
       grid-template-columns:minmax(0,1.04fr) minmax(320px,.96fr);
       gap:36px;
-      align-items:start
+      align-items:start;
     }
 
     .breadcrumb{
@@ -180,40 +187,51 @@
       letter-spacing:.18em;
       text-transform:uppercase;
       color:rgba(255,255,255,.42);
-      margin-bottom:18px
+      margin-bottom:18px;
     }
 
-    .breadcrumb a{color:rgba(255,255,255,.42)}
     .breadcrumb a:hover{color:#fff}
+
     .hero-copy .display{
       max-width:7.2ch;
       margin-bottom:12px;
-      font-size:clamp(52px,7.2vw,98px);
-      line-height:.9;
-      color:#fff;
+      color:#e8edff;
       text-shadow:
-        0 18px 40px rgba(0,0,0,.25),
-        0 4px 12px rgba(0,0,0,.18);
+        0 18px 42px rgba(0,0,0,.30),
+        0 4px 10px rgba(255,255,255,.04);
+      letter-spacing:.015em;
+    }
+
+    .hero-copy .display .serif{
+      display:inline-block;
+      background:linear-gradient(135deg,#ff7a90,#ef2442);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      text-shadow:
+        0 12px 30px rgba(239,36,66,.35),
+        0 2px 8px rgba(239,36,66,.25);
     }
 
     .hero-badges{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:22px
+      margin-top:22px;
     }
 
     .badge{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:9px 14px;
+      padding:10px 15px;
       border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.11);
       color:#fff;
       font-size:12px;
-      font-weight:700
+      font-weight:700;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 10px 24px rgba(0,0,0,.08);
     }
 
     .hero-side{
@@ -228,269 +246,18 @@
       border-radius:24px;
       background:
         radial-gradient(circle at top right, rgba(239,36,66,.10), transparent 28%),
-        linear-gradient(180deg, rgba(15,24,72,.54), rgba(15,24,72,.34));
+        linear-gradient(180deg, rgba(15,24,72,.60), rgba(15,24,72,.36));
       border:1px solid rgba(255,255,255,.09);
-      box-shadow:0 18px 44px rgba(3,8,30,.18);
-      transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
+      box-shadow:var(--shadow-soft);
       position:relative;
       overflow:hidden;
+      transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;
     }
 
-    .hero-side-card h4{font-size:15px;margin-bottom:8px}
-    .hero-side-card p{font-size:14px;line-height:1.7;color:var(--muted)}
-
-    .contact-section{padding-top:72px}
-
-    .contact-shell{
-      display:grid;
-      grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);
-      gap:32px;
-      align-items:start
-    }
-
-    .contact-card,.info-card{
-      position:relative;
-      padding:40px;
-      border-radius:32px;
-      background:
-        radial-gradient(circle at top right, rgba(239,36,66,.09), transparent 26%),
-        radial-gradient(circle at bottom left, rgba(95,130,255,.08), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.026));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:0 24px 64px rgba(3,8,30,.25);
-      backdrop-filter:blur(12px);
-    }
-
-    .contact-header{margin-bottom:26px}
-    .form-stack{display:flex;flex-direction:column;gap:16px}
-    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-
-    .phone-group{
-      display:grid;
-      grid-template-columns:minmax(150px,190px) 1fr;
-      gap:12px;
-      align-items:stretch
-    }
-
-    .country-select{
-      z-index:8;
-    }
-
-    .field-label{
-      display:block;
-      margin-bottom:8px;
-      font-size:10px;
-      letter-spacing:3px;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.52);
-      font-weight:700
-    }
-
-    .field-input,
-    .field-select,
-    .field-textarea{
-      width:100%;
-      background:linear-gradient(180deg,#1d2d6c,#1b2a66);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:16px;
-      padding:15px 16px;
-      color:#fff;
-      font-family:'Manrope',sans-serif;
-      font-size:14px;
-      outline:none;
-      transition:border-color .2s ease, transform .2s ease, background .2s ease, box-shadow .2s ease;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
-    }
-
-    .field-input::placeholder,
-    .field-textarea::placeholder{
-      color:rgba(255,255,255,.42)
-    }
-
-    .field-input:hover,
-    .field-select:hover,
-    .field-textarea:hover{
-      border-color:rgba(255,255,255,.16)
-    }
-
-    .field-input:focus,
-    .field-select:focus,
-    .field-textarea:focus{
-      border-color:rgba(255,255,255,.18);
-      transform:translateY(-1px)
-    }
-
-    .field-textarea{
-      resize:vertical;
-      line-height:1.7;
-      min-height:160px
-    }
-
-    .field-input.is-invalid,
-    .field-textarea.is-invalid,
-    .custom-select.is-invalid .custom-select-trigger{
-      border-color:rgba(239,36,66,.55) !important;
-      box-shadow:0 0 0 4px rgba(239,36,66,.14) !important;
-    }
-
-    .field-error{
-      display:none;
-      margin-top:8px;
-      font-size:12px;
-      line-height:1.5;
-      color:#ff9fb0;
-    }
-
-    .field-error.show{
-      display:block;
-    }
-
-    .submit-btn{
-      width:100%;
-      border:none;
-      border-radius:999px;
-      background:linear-gradient(135deg,#ef2442,#ff5b77);
-      color:#fff;
-      font-family:'Manrope',sans-serif;
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      padding:16px 20px;
-      cursor:pointer;
-      transition:.24s ease;
-      box-shadow:0 14px 30px rgba(239,36,66,.22)
-    }
-
-    .submit-btn:hover{
-      background:linear-gradient(135deg,#ff4866,#ff5b77);
-      transform:translateY(-1px)
-    }
-
-    .submit-note{
-      font-size:11px;
-      color:rgba(255,255,255,.42);
-      margin-top:12px;
-      text-align:center;
-      letter-spacing:.1em
-    }
-
-    .success-card{
-      display:none;
-      padding:42px;
-      background:rgba(239,36,66,.06);
-      border:1px solid rgba(239,36,66,.18);
-      border-radius:24px;
-      text-align:center
-    }
-
-    .success-card.show{display:block}
-    .success-card h3{margin-bottom:10px}
-    .success-card p{color:var(--muted);line-height:1.8}
-
-    .info-stack{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      margin-top:22px
-    }
-
-    .info-item{
-      display:flex;
-      align-items:flex-start;
-      gap:16px;
-      padding:20px;
-      border-radius:20px;
-      background:
-        radial-gradient(circle at top right, rgba(239,36,66,.06), transparent 28%),
-        linear-gradient(180deg,#213372,#1e2d69);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 12px 26px rgba(0,0,0,.12);
-      transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
-    }
-
-    .info-icon{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      background:rgba(239,36,66,.08);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--red);
-      font-size:18px;
-      flex-shrink:0;
-      border:1px solid rgba(239,36,66,.14)
-    }
-
-    .info-kicker{
-      font-size:10px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.42);
-      margin-bottom:3px;
-      font-weight:700
-    }
-
-    .info-item a{color:#fff}
-    .info-item a:hover{opacity:.84}
-
-    .quick-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:18px
-    }
-
-    .quick-card{
-      padding:20px;
-      border-radius:20px;
-      background:
-        radial-gradient(circle at top right, rgba(95,130,255,.10), transparent 28%),
-        linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 12px 26px rgba(0,0,0,.10);
-    }
-
-    .quick-card h4{font-size:15px;margin-bottom:6px}
-    .quick-card p{font-size:13px;line-height:1.7;color:var(--muted)}
-
-    .faq-section{padding-top:20px}
-
-    .faq-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:20px
-    }
-
-    .faq-card{
-      padding:28px;
-      background:
-        radial-gradient(circle at top right, rgba(95,130,255,.11), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(239,36,66,.07), transparent 32%),
-        linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.11);
-      border-radius:26px;
-      box-shadow:0 20px 48px rgba(3,8,30,.22);
-      transition:transform .24s ease, border-color .24s ease, box-shadow .24s ease
-    }
-
-    .faq-card h3{font-size:24px;margin-bottom:10px}
-    .faq-card p{font-size:14px;line-height:1.8;color:var(--muted)}
-
-
-    .hero-card:hover,
-    .contact-card:hover,
-    .info-card:hover{
-      box-shadow:0 30px 76px rgba(3,8,30,.28);
-    }
-
-    .hero-side-card:hover,
-    .info-item:hover,
-    .faq-card:hover{
-      transform:translateY(-6px);
+    .hero-side-card:hover{
+      transform:translateY(-4px);
       border-color:rgba(255,255,255,.14);
-      box-shadow:0 20px 44px rgba(3,8,30,.18);
+      box-shadow:0 22px 52px rgba(3,8,30,.24);
     }
 
     .hero-side-card::before{
@@ -500,107 +267,6 @@
       width:4px;
       border-radius:999px;
       background:linear-gradient(180deg,#ef2442,rgba(255,255,255,.18));
-      opacity:.86;
-    }
-
-    .breadcrumb{
-      color:rgba(255,255,255,.48);
-      margin-bottom:14px
-    }
-
-    .hero-copy .lead{
-      max-width:640px;
-    }
-
-    .field-input:focus,
-    .field-select:focus,
-    .field-textarea:focus{
-      border-color:rgba(255,255,255,.18);
-      transform:translateY(-1px);
-      box-shadow:0 0 0 4px rgba(95,130,255,.10);
-    }
-
-    .contact-header .h1,
-    .info-card .h1,
-    .faq-section .h1{
-      text-shadow:0 10px 26px rgba(0,0,0,.14);
-    }
-
-    .success-card{
-      background:
-        radial-gradient(circle at top right, rgba(239,36,66,.10), transparent 30%),
-        rgba(239,36,66,.06);
-      border:1px solid rgba(239,36,66,.18);
-      box-shadow:0 18px 44px rgba(239,36,66,.10);
-    }
-
-
-    .reveal{opacity:0;transform:translateY(18px);transition:all .7s ease}
-    .reveal.visible{opacity:1;transform:none}
-    .delay-1{transition-delay:.08s}
-    .delay-2{transition-delay:.16s}
-    .delay-3{transition-delay:.24s}
-    .delay-4{transition-delay:.32s}
-
-    @media (max-width:1100px){
-      .hero-grid,.contact-shell,.footer-grid{grid-template-columns:1fr}
-      .faq-grid{grid-template-columns:1fr 1fr}
-    }
-
-    @media (max-width:900px){
-      .services-grid,.services-only-links,.faq-grid,.field-grid,.quick-grid{grid-template-columns:1fr}
-      .phone-group{grid-template-columns:1fr}
-    }
-
-    @media (max-width:768px){
-      section,footer{padding-left:20px!important;padding-right:20px!important}
-      .hero-card,.contact-card,.info-card{padding:28px 22px;border-radius:24px}
-      .page-hero{padding-top:44px}
-      .display{font-size:clamp(44px,15vw,82px)}
-      .h1{font-size:clamp(34px,12vw,54px)}
-      .hero-copy .display{max-width:none}
-      .hero-side{padding-top:0}
-    }
-
-    @media (max-width:820px){
-      body{padding-top:82px}
-    }
-  
-    /* ===== CONTACT PREMIUM UPGRADE ===== */
-    .hero-card::after,
-    .contact-card::after,
-    .info-card::after,
-    .faq-card::after{
-      content:"";
-      position:absolute;
-      inset:auto -40px -46px auto;
-      width:160px;
-      height:160px;
-      border-radius:50%;
-      pointer-events:none;
-      background:radial-gradient(circle, rgba(239,36,66,.14), transparent 68%);
-      opacity:.65;
-      filter:blur(2px);
-    }
-
-    .hero-card::after{
-      width:220px;
-      height:220px;
-      opacity:.7;
-    }
-
-    .hero-copy .display .serif{
-      display:inline-block;
-      color:var(--red);
-      text-shadow:
-        0 8px 22px rgba(239,36,66,.35),
-        0 2px 6px rgba(239,36,66,.25);
-    }
-
-    .badge{
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.09);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
     }
 
     .hero-side-card h4{
@@ -615,197 +281,189 @@
       color:var(--muted);
     }
 
-    .hero-side-card:hover{
-      transform:translateY(-8px);
+    .contact-section{padding-top:72px}
+
+    .contact-shell{
+      display:grid;
+      grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);
+      gap:32px;
+      align-items:start;
+      overflow:visible;
+    }
+
+    .contact-header{margin-bottom:28px}
+    .form-stack{display:flex;flex-direction:column;gap:16px;overflow:visible}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;overflow:visible}
+
+    .field-label{
+      display:block;
+      margin-bottom:8px;
+      font-size:10px;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.56);
+      font-weight:700;
+    }
+
+    .field-input{
+      width:100%;
+      background:linear-gradient(180deg,#1d2d6c,#1a295f);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      padding:15px 16px;
+      color:#fff;
+      font-family:'Manrope',sans-serif;
+      font-size:14px;
+      outline:none;
+      transition:border-color .22s ease, transform .22s ease, box-shadow .22s ease, background .22s ease;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03), 0 10px 24px rgba(0,0,0,.07);
+    }
+
+    .field-input::placeholder{color:rgba(255,255,255,.40)}
+
+    .field-input:hover{
       border-color:rgba(255,255,255,.16);
-      box-shadow:0 24px 54px rgba(3,8,30,.22);
     }
 
-    .contact-card .section-tag,
-    .info-card .section-tag,
-    .faq-section .section-tag{
-      margin-bottom:14px;
-    }
-
-    .contact-header{
-      margin-bottom:28px;
-    }
-
-    .field-input,
-    .field-select,
-    .field-textarea{
-      background:
-        linear-gradient(180deg,#1d2d6c,#1a295f);
-    }
-
-    .submit-btn{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .submit-btn::before{
-      content:"";
-      position:absolute;
-      top:-10%;
-      left:-22%;
-      width:35%;
-      height:140%;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-      transform:translateX(-160%) skewX(-22deg);
-    }
-
-    .submit-btn:hover::before{
-      animation:premiumSheen 1.2s ease;
-    }
-
-    .info-icon{
-      background:rgba(239,36,66,.10);
-      border:1px solid rgba(239,36,66,.18);
-      box-shadow:0 10px 24px rgba(239,36,66,.08);
-    }
-
-    .quick-card h4,
-    .faq-card h3{
-      text-shadow:0 8px 18px rgba(0,0,0,.14);
-    }
-
-    .faq-card:hover{
-      transform:translateY(-8px);
-      border-color:rgba(255,255,255,.16);
-      box-shadow:0 24px 58px rgba(3,8,30,.24);
-    }
-
-    @media (max-width:1100px){
-      .hero-grid,.contact-shell,.footer-grid{grid-template-columns:1fr}
-      .hero-copy .display{max-width:none}
-      .hero-side{padding-top:0}
-    }
-
-    @media (max-width:768px){
-      .hero-card,.contact-card,.info-card{padding:28px 22px;border-radius:26px}
-      .hero-card{padding-top:34px}
-    }
-
-
-    /* reinforce custom dropdown UI */
-    .field-select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      color:#111 !important;
-      background:
-        linear-gradient(180deg,#ffffff,#f3f6ff) !important;
-      background-image:
-        linear-gradient(180deg,#ffffff,#f3f6ff),
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
-      background-repeat:no-repeat,no-repeat !important;
-      background-position:0 0,right 16px center !important;
-      background-size:auto,16px !important;
-      padding-right:52px !important;
-    }
-    .field-select option{
-      color:#111 !important;
-      background:#fff !important;
-    }
-
-
-    /* ===== FINAL CONTACT ULTRA ===== */
-    .hero-card{
-      box-shadow:0 34px 88px rgba(3,8,30,.30);
-      backdrop-filter:blur(12px);
-    }
-
-    .hero-card::after{
-      content:"";
-      position:absolute;
-      inset:auto -48px -54px auto;
-      width:220px;
-      height:220px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(239,36,66,.16), transparent 68%);
-      opacity:.72;
-      pointer-events:none;
-      filter:blur(2px);
-    }
-
-    .hero-side{
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      padding-top:18px;
-    }
-
-    .hero-side-card{
-      position:relative;
-      overflow:hidden;
-      transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease, background .28s ease;
-      box-shadow:0 18px 44px rgba(3,8,30,.18);
-    }
-
-    .hero-side-card::before{
-      content:"";
-      position:absolute;
-      inset:0 auto 0 0;
-      width:4px;
-      border-radius:999px;
-      background:linear-gradient(180deg,#ef2442,rgba(255,255,255,.18));
-      opacity:.9;
-    }
-
-    .hero-side-card::after{
-      content:"";
-      position:absolute;
-      inset:auto -34px -38px auto;
-      width:130px;
-      height:130px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(239,36,66,.12), transparent 68%);
-      opacity:.6;
-      pointer-events:none;
-    }
-
-    .hero-side-card:hover{
-      transform:translateY(-8px);
-      border-color:rgba(255,255,255,.16);
-      box-shadow:0 24px 54px rgba(3,8,30,.22);
-    }
-
-    .contact-card,.info-card{
-      backdrop-filter:blur(12px);
-    }
-
-    .contact-card::after,
-    .info-card::after{
-      content:"";
-      position:absolute;
-      inset:auto -40px -44px auto;
-      width:170px;
-      height:170px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(95,130,255,.12), transparent 68%);
-      opacity:.66;
-      pointer-events:none;
-    }
-
-    .field-input,
-    .field-select,
-    .field-textarea{
-      background:
-        linear-gradient(180deg,#1d2d6c,#1a295f);
-    }
-
-    .field-input:focus,
-    .field-select:focus,
-    .field-textarea:focus{
+    .field-input:focus{
+      border-color:rgba(255,255,255,.20);
+      transform:translateY(-1px);
       box-shadow:
         0 0 0 4px rgba(95,130,255,.16),
-        0 12px 24px rgba(8,18,60,.10);
+        0 14px 30px rgba(8,18,60,.14);
+      background:linear-gradient(180deg,#213172,#1b2b62);
+    }
+
+    .phone-inline-wrap{
+      display:flex;
+      align-items:stretch;
+      width:100%;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      background:linear-gradient(180deg,#1d2d6c,#1a295f);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03), 0 10px 24px rgba(0,0,0,.07);
+      position:relative;
+      z-index:20;
+      overflow:visible;
+      transition:border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .phone-inline-wrap:focus-within{
+      border-color:rgba(255,255,255,.20);
+      box-shadow:
+        0 0 0 4px rgba(95,130,255,.16),
+        0 14px 30px rgba(8,18,60,.14);
+    }
+
+    .custom-select.country-inline-select{
+      flex:0 0 auto;
+      width:auto !important;
+      position:relative;
+      z-index:99999 !important;
+    }
+
+    .custom-select.country-inline-select .custom-select-trigger{
+      width:auto !important;
+      min-width:84px;
+      max-width:none;
+      height:100%;
+      min-height:56px;
+      padding:0 34px 0 14px;
+      border:none;
+      border-right:1px solid rgba(255,255,255,.10);
+      border-radius:18px 0 0 18px;
+      background:transparent;
+      box-shadow:none;
+      font-size:14px;
+      white-space:nowrap;
+      color:#fff;
+    }
+
+    .custom-select.country-inline-select .custom-select-value{
+      display:inline-block;
+      padding-right:0;
+    }
+
+    .phone-inline-input{
+      flex:1 1 auto;
+      min-width:0;
+      width:100%;
+      min-height:56px;
+      border:none;
+      border-radius:0 18px 18px 0;
+      background:transparent;
+      box-shadow:none;
+      display:block;
+      position:relative;
+      z-index:1;
+      padding:0 16px;
+      color:#fff;
+      pointer-events:auto;
+    }
+
+    .phone-inline-input:focus{
+      transform:none;
+      box-shadow:none;
+    }
+
+    .custom-select.country-inline-select .custom-select-trigger:hover,
+    .custom-select.country-inline-select.open .custom-select-trigger,
+    .custom-select.country-inline-select .custom-select-trigger:focus{
+      border-color:transparent;
+      box-shadow:none;
+      transform:none;
+    }
+
+    .custom-select.country-inline-select.open{
+      z-index:100000 !important;
+    }
+
+    .custom-select.country-inline-select .custom-select-menu{
+      position:absolute;
+      top:calc(100% + 10px);
+      left:0;
+      right:auto;
+      min-width:210px;
+      max-width:230px;
+      z-index:100001 !important;
+    }
+
+    .custom-select:not(.country-inline-select){
+      z-index:10 !important;
+    }
+
+    .custom-select:not(.country-inline-select).open{
+      z-index:20 !important;
+    }
+
+    .custom-select:not(.country-inline-select) .custom-select-menu{
+      z-index:21 !important;
+    }
+
+    .contact-card,
+    .contact-shell,
+    .form-stack,
+    .field-grid{
+      overflow:visible !important;
     }
 
     .submit-btn{
+      width:100%;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg,#ef2442 0%,#ff5b77 100%);
+      color:#fff;
+      font-family:'Manrope',sans-serif;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      padding:17px 20px;
+      cursor:pointer;
+      transition:.26s ease;
+      box-shadow:0 18px 38px rgba(239,36,66,.28);
       position:relative;
       overflow:hidden;
-      box-shadow:0 16px 34px rgba(239,36,66,.24);
     }
 
     .submit-btn::before{
@@ -815,80 +473,162 @@
       left:-22%;
       width:35%;
       height:140%;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
       transform:translateX(-160%) skewX(-22deg);
     }
 
+    .submit-btn:hover{
+      background:linear-gradient(135deg,#ff4362,#ff6a83);
+      transform:translateY(-2px);
+      box-shadow:0 22px 44px rgba(239,36,66,.34);
+    }
+
     .submit-btn:hover::before{
-      animation:premiumSheen 1.2s ease;
-    }
-
-    .info-item,
-    .quick-card,
-    .faq-card{
-      transition:transform .24s ease, border-color .24s ease, box-shadow .24s ease;
-    }
-
-    .info-item:hover,
-    .quick-card:hover,
-    .faq-card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(255,255,255,.14);
-      box-shadow:0 22px 48px rgba(3,8,30,.18);
+      animation:premiumSheen 1.15s ease;
     }
 
     .contact-header .h1,
     .info-card .h1,
     .faq-section .h1{
-      text-shadow:0 10px 26px rgba(0,0,0,.14);
+      color:#e8edff;
+      text-shadow:
+        0 18px 42px rgba(0,0,0,.30),
+        0 4px 10px rgba(255,255,255,.04);
+      letter-spacing:.015em;
     }
 
-    @media (max-width:1100px){
-      .hero-copy .display{max-width:none}
-      .hero-side{padding-top:0}
+    .contact-header .h1 .serif,
+    .info-card .h1 .serif,
+    .faq-section .h1 .serif{
+      background:linear-gradient(135deg,#ff7a90,#ef2442);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      text-shadow:
+        0 12px 30px rgba(239,36,66,.35),
+        0 2px 8px rgba(239,36,66,.25);
     }
 
-    @media (max-width:768px){
-      .hero-card,.contact-card,.info-card{padding:28px 22px;border-radius:26px}
-      .hero-copy .display{
-        font-size:clamp(44px,15vw,82px);
-        max-width:none;
-      }
-      .hero-side{padding-top:0}
+    .info-stack{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-top:22px;
     }
 
-
-    .field-select{
-      appearance:none;
-      -webkit-appearance:none;
-      -moz-appearance:none;
-      color:#111 !important;
+    .info-item{
+      display:flex;
+      align-items:flex-start;
+      gap:16px;
+      padding:20px;
+      border-radius:22px;
       background:
-        linear-gradient(180deg,#ffffff,#f3f6ff) !important;
-      background-image:
-        linear-gradient(180deg,#ffffff,#f3f6ff),
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") !important;
-      background-repeat:no-repeat,no-repeat !important;
-      background-position:0 0,right 16px center !important;
-      background-size:auto,16px !important;
-      padding-right:52px !important;
-      border:1px solid rgba(0,0,0,.08) !important;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.90),
-        0 8px 20px rgba(8,18,60,.08) !important;
+        radial-gradient(circle at top right, rgba(239,36,66,.07), transparent 28%),
+        linear-gradient(180deg,#213372,#1e2d69);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 14px 30px rgba(0,0,0,.12);
+      transition:transform .26s ease, border-color .26s ease, box-shadow .26s ease;
     }
 
-    .field-select option{
-      color:#111 !important;
-      background:#fff !important;
+    .info-item:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.14);
+      box-shadow:0 20px 42px rgba(0,0,0,.16);
     }
 
+    .info-icon{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:linear-gradient(180deg,rgba(239,36,66,.16),rgba(239,36,66,.08));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--red-soft);
+      font-size:18px;
+      flex-shrink:0;
+      border:1px solid rgba(239,36,66,.18);
+      box-shadow:0 10px 24px rgba(239,36,66,.08);
+    }
 
-    /* ===== TRUE CUSTOM DROPDOWN ===== */
+    .info-kicker{
+      font-size:10px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.42);
+      margin-bottom:3px;
+      font-weight:700;
+    }
+
+    .quick-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .quick-card{
+      padding:20px;
+      border-radius:22px;
+      background:
+        radial-gradient(circle at top right, rgba(95,130,255,.10), transparent 28%),
+        linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 12px 28px rgba(0,0,0,.09);
+      transition:transform .24s ease, border-color .24s ease;
+    }
+
+    .quick-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.12);
+    }
+
+    .quick-card h4{
+      font-size:15px;
+      margin-bottom:6px;
+    }
+
+    .quick-card p{
+      font-size:13px;
+      line-height:1.7;
+      color:var(--muted);
+    }
+
+    .faq-section{padding-top:20px}
+
+    .faq-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+    }
+
+    .faq-card{
+      padding:28px;
+      border-radius:26px;
+      transition:transform .26s ease, border-color .26s ease, box-shadow .26s ease;
+    }
+
+    .faq-card:hover{
+      transform:translateY(-5px);
+      border-color:var(--line-strong);
+      box-shadow:0 26px 54px rgba(3,8,30,.28);
+    }
+
+    .faq-card h3{
+      font-size:24px;
+      margin-bottom:10px;
+    }
+
+    .faq-card p{
+      font-size:14px;
+      line-height:1.8;
+      color:var(--muted);
+    }
+
     .custom-select{
       position:relative;
       width:100%;
-      z-index:5;
+      z-index:30;
     }
 
     .custom-select-trigger{
@@ -903,8 +643,7 @@
       font-size:14px;
       color:#fff;
       cursor:pointer;
-      background:
-        linear-gradient(135deg,#1f2f70,#2b3f8f);
+      background:linear-gradient(135deg,#1f2f70,#2b3f8f);
       border:1px solid rgba(255,255,255,.12);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.06),
@@ -915,9 +654,6 @@
 
     .custom-select-trigger:hover{
       border-color:rgba(255,255,255,.24);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 14px 26px rgba(0,0,0,.18);
     }
 
     .custom-select.open .custom-select-trigger,
@@ -972,6 +708,7 @@
       transition:opacity .22s ease, visibility .22s ease, transform .22s ease;
       max-height:280px;
       overflow:auto;
+      z-index:9999;
     }
 
     .custom-select.open .custom-select-menu{
@@ -993,7 +730,8 @@
       font-size:14px;
       line-height:1.45;
       cursor:pointer;
-      transition:background .18s ease, transform .18s ease, box-shadow .18s ease, color .18s ease;
+      transition:background .18s ease, transform .18s ease;
+      white-space:nowrap;
     }
 
     .custom-select-option:hover{
@@ -1004,20 +742,8 @@
     .custom-select-option.is-selected{
       background:linear-gradient(135deg,#1f2f70,#2b3f8f);
       color:#fff;
-      box-shadow:0 10px 20px rgba(31,47,112,.22);
     }
 
-    .custom-select-menu::-webkit-scrollbar{
-      width:8px;
-    }
-
-    .custom-select-menu::-webkit-scrollbar-thumb{
-      background:rgba(17,17,17,.18);
-      border-radius:999px;
-    }
-
-
-    /* ===== NEXT LEVEL SUCCESS POPUP ===== */
     .success-popup{
       position:fixed;
       inset:0;
@@ -1025,9 +751,8 @@
       align-items:center;
       justify-content:center;
       padding:24px;
-      background:rgba(7,12,39,.62);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
+      background:rgba(7,12,39,.64);
+      backdrop-filter:blur(12px);
       opacity:0;
       visibility:hidden;
       pointer-events:none;
@@ -1043,19 +768,17 @@
 
     .success-popup-card{
       position:relative;
-      width:min(460px,100%);
+      width:min(470px,100%);
       padding:34px 30px 28px;
-      border-radius:28px;
+      border-radius:30px;
       text-align:center;
       color:#fff;
       background:
-        radial-gradient(circle at top right, rgba(239,36,66,.16), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(95,130,255,.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(239,36,66,.17), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(95,130,255,.20), transparent 34%),
         linear-gradient(180deg, rgba(30,47,112,.98), rgba(20,32,84,.98));
       border:1px solid rgba(255,255,255,.12);
-      box-shadow:
-        0 28px 70px rgba(3,8,30,.40),
-        inset 0 1px 0 rgba(255,255,255,.05);
+      box-shadow:0 28px 70px rgba(3,8,30,.40);
       transform:translateY(16px) scale(.96);
       transition:transform .34s cubic-bezier(.22,1,.36,1);
       overflow:hidden;
@@ -1070,21 +793,7 @@
       position:absolute;
       inset:0;
       pointer-events:none;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
-      opacity:.9;
-    }
-
-    .success-popup-card::after{
-      content:"";
-      position:absolute;
-      inset:auto -46px -50px auto;
-      width:180px;
-      height:180px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(239,36,66,.16), transparent 68%);
-      opacity:.72;
-      pointer-events:none;
-      filter:blur(2px);
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 40%);
     }
 
     .success-popup-close{
@@ -1100,14 +809,7 @@
       color:#fff;
       font-size:18px;
       cursor:pointer;
-      transition:transform .2s ease, background .2s ease, border-color .2s ease;
       z-index:2;
-    }
-
-    .success-popup-close:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.12);
-      border-color:rgba(255,255,255,.16);
     }
 
     .success-popup-icon{
@@ -1120,12 +822,8 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.20), transparent 36%),
-        linear-gradient(135deg,#ef2442,#ff5b77);
-      box-shadow:
-        0 20px 40px rgba(239,36,66,.28),
-        inset 0 1px 0 rgba(255,255,255,.20);
+      background:linear-gradient(135deg,#ef2442,#ff5b77);
+      box-shadow:0 20px 40px rgba(239,36,66,.28);
       animation:successPulse 2.6s ease-in-out infinite;
     }
 
@@ -1135,7 +833,6 @@
       font-weight:800;
       line-height:1;
       color:#fff;
-      transform:translateY(-1px);
     }
 
     .success-popup-kicker{
@@ -1164,7 +861,6 @@
       line-height:.9;
       letter-spacing:.04em;
       margin-bottom:12px;
-      text-shadow:0 12px 28px rgba(0,0,0,.18);
     }
 
     .success-popup p{
@@ -1190,7 +886,6 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
       min-width:140px;
       padding:12px 18px;
       border-radius:999px;
@@ -1211,7 +906,6 @@
 
     .success-popup-btn.primary:hover{
       transform:translateY(-2px);
-      background:linear-gradient(135deg,#ff415f,#ff6d86);
     }
 
     .success-popup-btn.secondary{
@@ -1223,12 +917,74 @@
     .success-popup-btn.secondary:hover{
       transform:translateY(-2px);
       background:rgba(255,255,255,.10);
-      border-color:rgba(255,255,255,.18);
     }
 
     @keyframes successPulse{
-      0%,100%{box-shadow:0 20px 40px rgba(239,36,66,.24), inset 0 1px 0 rgba(255,255,255,.20)}
-      50%{box-shadow:0 24px 52px rgba(239,36,66,.34), inset 0 1px 0 rgba(255,255,255,.20)}
+      0%,100%{box-shadow:0 20px 40px rgba(239,36,66,.24)}
+      50%{box-shadow:0 24px 52px rgba(239,36,66,.34)}
+    }
+
+    @keyframes premiumSheen{
+      0%{transform:translateX(-160%) skewX(-22deg)}
+      100%{transform:translateX(320%) skewX(-22deg)}
+    }
+
+    @media (max-width:1100px){
+      .hero-grid,
+      .contact-shell{
+        grid-template-columns:1fr;
+      }
+
+      .faq-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .hero-copy .display{max-width:none}
+      .hero-side{padding-top:0}
+    }
+
+    @media (max-width:900px){
+      .faq-grid,
+      .field-grid,
+      .quick-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:768px){
+      section,footer{
+        padding-left:20px!important;
+        padding-right:20px!important;
+      }
+
+      .hero-card,
+      .contact-card,
+      .info-card{
+        padding:28px 22px;
+        border-radius:26px;
+      }
+
+      .page-hero{padding-top:44px}
+      .display{font-size:clamp(44px,15vw,82px)}
+      .h1{font-size:clamp(34px,12vw,54px)}
+      .hero-copy .display{max-width:none}
+      .hero-side{padding-top:0}
+
+      .custom-select.country-inline-select .custom-select-trigger{
+        min-height:54px;
+        min-width:76px;
+        padding:0 30px 0 12px;
+        font-size:13px;
+      }
+
+      .phone-inline-input{
+        min-height:54px;
+      }
+
+      .custom-select.country-inline-select .custom-select-menu{
+        min-width:190px;
+        max-width:210px;
+      }
     }
 
     @media (max-width:640px){
@@ -1236,25 +992,48 @@
         padding:30px 22px 24px;
         border-radius:24px;
       }
-      .success-popup h3{
-        font-size:44px;
-      }
+
+      .success-popup h3{font-size:44px}
       .success-popup-icon{
         width:74px;
         height:74px;
       }
-      .success-popup-icon::before{
-        font-size:36px;
-      }
+
+      .success-popup-icon::before{font-size:36px}
+
       .success-popup-actions{
         flex-direction:column;
       }
+
       .success-popup-btn{
         width:100%;
       }
     }
 
-</style>
+    @media (max-width:560px){
+      .hero-badges{gap:8px}
+
+      .badge{
+        width:100%;
+        justify-content:flex-start;
+      }
+
+      .contact-card,
+      .info-card,
+      .hero-card{
+        border-radius:24px;
+      }
+
+      .field-input,
+      .custom-select-trigger{
+        font-size:14px;
+      }
+    }
+
+    @media (max-width:820px){
+      body{padding-top:82px}
+    }
+  </style>
 </head>
 <body>
   <div id="top"></div>
@@ -1275,6 +1054,7 @@
               <span class="badge">Response Within 1 Business Day</span>
             </div>
           </div>
+
           <div class="hero-side">
             <div class="hero-side-card reveal visible delay-1">
               <h4>What this call is for</h4>
@@ -1310,7 +1090,6 @@
                 <div>
                   <label class="field-label" for="f-name">Full Name</label>
                   <input class="field-input" id="f-name" type="text" placeholder="Your full name">
-                  <div class="field-error" id="err-name">Name must contain letters only.</div>
                 </div>
                 <div>
                   <label class="field-label" for="f-company">Company / Brand</label>
@@ -1322,34 +1101,36 @@
                 <div>
                   <label class="field-label" for="f-email">Email Address</label>
                   <input class="field-input" id="f-email" type="email" placeholder="you@company.com">
-                  <div class="field-error" id="err-email">Enter a valid email address.</div>
                 </div>
+
                 <div>
                   <label class="field-label" for="f-phone">Phone / WhatsApp</label>
-                  <div class="phone-group">
-                    <div class="custom-select country-select" data-select>
+                  <div class="phone-inline-wrap">
+                    <div class="custom-select country-inline-select" data-select>
                       <button class="custom-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
-                        <span class="custom-select-value">+60 Malaysia</span>
+                        <span class="custom-select-value">+60</span>
                         <span class="custom-select-arrow" aria-hidden="true"></span>
                       </button>
+
                       <div class="custom-select-menu" role="listbox">
-                        <button class="custom-select-option is-selected" type="button" data-value="+60" data-label="+60 Malaysia">+60 Malaysia</button>
-                        <button class="custom-select-option" type="button" data-value="+65" data-label="+65 Singapore">+65 Singapore</button>
-                        <button class="custom-select-option" type="button" data-value="+62" data-label="+62 Indonesia">+62 Indonesia</button>
-                        <button class="custom-select-option" type="button" data-value="+66" data-label="+66 Thailand">+66 Thailand</button>
-                        <button class="custom-select-option" type="button" data-value="+63" data-label="+63 Philippines">+63 Philippines</button>
-                        <button class="custom-select-option" type="button" data-value="+673" data-label="+673 Brunei">+673 Brunei</button>
-                        <button class="custom-select-option" type="button" data-value="+84" data-label="+84 Vietnam">+84 Vietnam</button>
-                        <button class="custom-select-option" type="button" data-value="+91" data-label="+91 India">+91 India</button>
-                        <button class="custom-select-option" type="button" data-value="+61" data-label="+61 Australia">+61 Australia</button>
-                        <button class="custom-select-option" type="button" data-value="+44" data-label="+44 United Kingdom">+44 United Kingdom</button>
+                        <button class="custom-select-option is-selected" type="button" data-value="+60" data-label="+60">MY Malaysia +60</button>
+                        <button class="custom-select-option" type="button" data-value="+673" data-label="+673">BN Brunei +673</button>
+                        <button class="custom-select-option" type="button" data-value="+62" data-label="+62">ID Indonesia +62</button>
+                        <button class="custom-select-option" type="button" data-value="+63" data-label="+63">PH Philippines +63</button>
+                        <button class="custom-select-option" type="button" data-value="+66" data-label="+66">TH Thailand +66</button>
                       </div>
+
                       <input type="hidden" id="f-country-code" value="+60">
                     </div>
-                    <div>
-                      <input class="field-input" id="f-phone" type="tel" inputmode="numeric" placeholder="Phone number only">
-                      <div class="field-error" id="err-phone">Phone number must contain digits only.</div>
-                    </div>
+
+                    <input
+                      class="field-input phone-inline-input"
+                      id="f-phone"
+                      type="tel"
+                      inputmode="numeric"
+                      maxlength="15"
+                      placeholder="Phone number"
+                    >
                   </div>
                 </div>
               </div>
@@ -1362,18 +1143,17 @@
                     <span class="custom-select-arrow" aria-hidden="true"></span>
                   </button>
                   <div class="custom-select-menu" role="listbox">
-                    <button class="custom-select-option is-selected" type="button" data-value="">Select stage</button>
-                    <button class="custom-select-option" type="button" data-value="Startup / Early Stage">Startup / Early Stage</button>
-                    <button class="custom-select-option" type="button" data-value="Growing Team">Growing Team</button>
-                    <button class="custom-select-option" type="button" data-value="Scaling Operations">Scaling Operations</button>
-                    <button class="custom-select-option" type="button" data-value="Established Business">Established Business</button>
+                    <button class="custom-select-option is-selected" type="button" data-value="" data-label="Select stage">Select stage</button>
+                    <button class="custom-select-option" type="button" data-value="Startup / Early Stage" data-label="Startup / Early Stage">Startup / Early Stage</button>
+                    <button class="custom-select-option" type="button" data-value="Growing Team" data-label="Growing Team">Growing Team</button>
+                    <button class="custom-select-option" type="button" data-value="Scaling Operations" data-label="Scaling Operations">Scaling Operations</button>
+                    <button class="custom-select-option" type="button" data-value="Established Business" data-label="Established Business">Established Business</button>
                   </div>
                   <input type="hidden" id="f-stage" value="">
                 </div>
               </div>
 
               <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()">Submit Enquiry</button>
-              <p class="submit-note">Your enquiry will be sent directly into the company enquiry sheet after Google Sheets is connected.</p>
             </div>
           </div>
         </div>
@@ -1388,9 +1168,7 @@
               <div class="info-icon">✉</div>
               <div>
                 <div class="info-kicker">Email</div>
-                <div>
-                  <a href="mailto:datinfazmi@gmail.com">hello@gofaast.com</a>
-                </div>
+                <div><a href="mailto:hello@gofaast.com">hello@gofaast.com</a></div>
               </div>
             </div>
 
@@ -1398,9 +1176,7 @@
               <div class="info-icon">☎</div>
               <div>
                 <div class="info-kicker">Call / WhatsApp</div>
-                <div>
-                  <a href="https://wa.me/60124300204" target="_blank" rel="noopener noreferrer">+60 12-430 0204</a>
-                </div>
+                <div><a href="https://wa.me/60124300204" target="_blank" rel="noopener noreferrer">+60 12-430 0204</a></div>
               </div>
             </div>
 
@@ -1409,11 +1185,11 @@
               <div>
                 <div class="info-kicker">Office / Base</div>
                 <div>
-                  F-2-28, Vista Alam, Jalan Ikhtisas 14/1,<br>
+                  F-2-28, Vista Alam,<br>
+                  Jalan Ikhtisas 14/1,<br>
                   Seksyen 14, 40000 Shah Alam,<br>
                   Selangor.
-                  <br><br>
-</div>
+                </div>
               </div>
             </div>
           </div>
@@ -1438,15 +1214,15 @@
       <div class="section-tag reveal">How It Works</div>
       <h2 class="h1 reveal delay-1" style="margin-bottom:26px">WHAT HAPPENS <span class="serif" style="color:var(--red)">After You Submit</span></h2>
       <div class="faq-grid">
-        <div class="card faq-card reveal delay-1">
+        <div class="faq-card reveal delay-1">
           <h3>01. WE REVIEW</h3>
           <p>The team reviews your enquiry to understand your current business context, friction points, and what kind of support is most relevant.</p>
         </div>
-        <div class="card faq-card reveal delay-2">
+        <div class="faq-card reveal delay-2">
           <h3>02. WE RESPOND</h3>
           <p>You receive a follow-up through email or WhatsApp with the best next step, whether that is a discovery call, clarification, or service recommendation.</p>
         </div>
-        <div class="card faq-card reveal delay-3">
+        <div class="faq-card reveal delay-3">
           <h3>03. WE MOVE FORWARD</h3>
           <p>Once aligned, the conversation moves into the right engagement path so the business gets action, not just vague advice.</p>
         </div>
@@ -1456,206 +1232,13 @@
 
   <div id="footer"></div>
 
-  <script>
-function showSuccessPopup() {
-  const popup = document.getElementById('successPopup');
-  popup.classList.add('show');
-  popup.setAttribute('aria-hidden', 'false');
-}
-
-function closeSuccessPopup(resetFocus) {
-  const popup = document.getElementById('successPopup');
-  popup.classList.remove('show');
-  popup.setAttribute('aria-hidden', 'true');
-  if (resetFocus) {
-    const firstField = document.getElementById('f-name');
-    if (firstField) firstField.focus();
-  }
-}
-
-function resetEnquiryForm() {
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-company').value = '';
-  document.getElementById('f-email').value = '';
-  document.getElementById('f-phone').value = '';
-  document.getElementById('f-country-code').value = '+60';
-  document.getElementById('f-stage').value = '';
-
-  document.querySelectorAll('.field-error').forEach(el => el.classList.remove('show'));
-  document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-
-  document.querySelectorAll('[data-select]').forEach(select => {
-    const valueEl = select.querySelector('.custom-select-value');
-    const options = select.querySelectorAll('.custom-select-option');
-    const hidden = select.querySelector('input[type="hidden"]');
-    const isCountry = select.classList.contains('country-select');
-
-    if (isCountry) {
-      if (valueEl) valueEl.textContent = '+60 Malaysia';
-      if (hidden) hidden.value = '+60';
-    } else {
-      if (valueEl) valueEl.textContent = 'Select stage';
-      if (hidden) hidden.value = '';
-    }
-
-    options.forEach((opt, index) => {
-      opt.classList.toggle('is-selected', index === 0);
-    });
-
-    select.classList.remove('open', 'is-invalid');
-    const trigger = select.querySelector('.custom-select-trigger');
-    if (trigger) trigger.setAttribute('aria-expanded', 'false');
-  });
-}
-
-function handleSubmit() {
-  const name = document.getElementById('f-name').value.trim();
-  const company = document.getElementById('f-company').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const countryCode = document.getElementById('f-country-code').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  const stage = document.getElementById('f-stage').value;
-  const submitBtn = document.getElementById('submitBtn');
-
-  const nameInput = document.getElementById('f-name');
-  const emailInput = document.getElementById('f-email');
-  const phoneInput = document.getElementById('f-phone');
-  const countrySelect = document.querySelector('.country-select');
-
-  const errName = document.getElementById('err-name');
-  const errEmail = document.getElementById('err-email');
-  const errPhone = document.getElementById('err-phone');
-
-  [nameInput, emailInput, phoneInput].forEach(el => el.classList.remove('is-invalid'));
-  if (countrySelect) countrySelect.classList.remove('is-invalid');
-  document.querySelectorAll('.field-error').forEach(el => el.classList.remove('show'));
-
-  const nameOk = /^[A-Za-z\s]+$/.test(name);
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const phoneOk = /^\d+$/.test(phone);
-
-  let hasError = false;
-
-  if (!name || !nameOk) {
-    nameInput.classList.add('is-invalid');
-    errName.classList.add('show');
-    hasError = true;
-  }
-
-  if (!email || !emailOk) {
-    emailInput.classList.add('is-invalid');
-    errEmail.classList.add('show');
-    hasError = true;
-  }
-
-  if (!phone || !phoneOk) {
-    phoneInput.classList.add('is-invalid');
-    errPhone.classList.add('show');
-    hasError = true;
-  }
-
-  if (hasError) return;
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Submitting...';
-
-  document.getElementById('gs-name').value = name;
-  document.getElementById('gs-company').value = company;
-  document.getElementById('gs-email').value = email;
-  document.getElementById('gs-phone').value = `${countryCode}${phone}`;
-  document.getElementById('gs-stage').value = stage;
-  document.getElementById('gs-page').value = window.location.href;
-  document.getElementById('gs-submittedAt').value = new Date().toISOString();
-
-  document.getElementById('gsheetForm').submit();
-
-  setTimeout(() => {
-    showSuccessPopup();
-    resetEnquiryForm();
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Enquiry';
-  }, 900);
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeSuccessPopup(false);
-});
-</script>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.14 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-
-  <script src="shared-layout.js"></script>
-
-  <script>
-    (function(){
-      const selects = document.querySelectorAll('[data-select]');
-      function closeAll(except){
-        selects.forEach(sel => {
-          if (sel !== except) {
-            sel.classList.remove('open');
-            const trigger = sel.querySelector('.custom-select-trigger');
-            if (trigger) trigger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-
-      selects.forEach(select => {
-        const trigger = select.querySelector('.custom-select-trigger');
-        const valueEl = select.querySelector('.custom-select-value');
-        const options = select.querySelectorAll('.custom-select-option');
-        const hidden = select.querySelector('input[type="hidden"]');
-
-        trigger.addEventListener('click', function(e){
-          e.preventDefault();
-          select.classList.remove('is-invalid');
-          const isOpen = select.classList.contains('open');
-          closeAll(select);
-          select.classList.toggle('open', !isOpen);
-          trigger.setAttribute('aria-expanded', String(!isOpen));
-        });
-
-        options.forEach(option => {
-          option.addEventListener('click', function(e){
-            e.preventDefault();
-            const value = option.getAttribute('data-value') || '';
-            const label = option.getAttribute('data-label') || option.textContent.trim();
-            valueEl.textContent = label;
-            hidden.value = value;
-            options.forEach(o => o.classList.remove('is-selected'));
-            option.classList.add('is-selected');
-            select.classList.remove('open');
-            trigger.setAttribute('aria-expanded', 'false');
-          });
-        });
-      });
-
-      document.addEventListener('click', function(e){
-        if (!e.target.closest('[data-select]')) closeAll();
-      });
-
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape') closeAll();
-      });
-    })();
-  </script>
-
-
-
   <div id="successPopup" class="success-popup" aria-hidden="true">
     <div class="success-popup-card">
       <button class="success-popup-close" type="button" aria-label="Close" onclick="closeSuccessPopup()">×</button>
       <div class="success-popup-icon"></div>
       <div class="success-popup-kicker">Enquiry Submitted</div>
       <h3>THANK YOU</h3>
-      <p>Your enquiry has been submitted successfully. The FAAST team can now review it directly from the connected Google Sheet.</p>
+      <p class="submit-note">Our team will review your enquiry and get back to you with the next step as soon as possible.</p>
       <div class="success-popup-actions">
         <button class="success-popup-btn primary" type="button" onclick="closeSuccessPopup()">Done</button>
         <button class="success-popup-btn secondary" type="button" onclick="closeSuccessPopup(true)">Submit Another</button>
@@ -1681,5 +1264,203 @@ document.addEventListener('keydown', function(e) {
 
   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
+  <script>
+    function showSuccessPopup() {
+      const popup = document.getElementById('successPopup');
+      popup.classList.add('show');
+      popup.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeSuccessPopup(resetFocus) {
+      const popup = document.getElementById('successPopup');
+      popup.classList.remove('show');
+      popup.setAttribute('aria-hidden', 'true');
+      if (resetFocus) {
+        const firstField = document.getElementById('f-name');
+        if (firstField) firstField.focus();
+      }
+    }
+
+    function resetEnquiryForm() {
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-company').value = '';
+      document.getElementById('f-email').value = '';
+      document.getElementById('f-phone').value = '';
+      document.getElementById('f-stage').value = '';
+
+      const countryCode = document.getElementById('f-country-code');
+      if (countryCode) countryCode.value = '+60';
+
+      document.querySelectorAll('[data-select]').forEach(select => {
+        const valueEl = select.querySelector('.custom-select-value');
+        const options = select.querySelectorAll('.custom-select-option');
+
+        if (valueEl && select.classList.contains('country-inline-select')) {
+          valueEl.textContent = '+60';
+        } else if (valueEl) {
+          valueEl.textContent = 'Select stage';
+        }
+
+        options.forEach((opt, index) => {
+          opt.classList.toggle('is-selected', index === 0);
+        });
+
+        select.classList.remove('open');
+        const trigger = select.querySelector('.custom-select-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    function handleSubmit() {
+      const name = document.getElementById('f-name').value.trim();
+      const company = document.getElementById('f-company').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const countryCode = document.getElementById('f-country-code').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const stage = document.getElementById('f-stage').value;
+      const submitBtn = document.getElementById('submitBtn');
+
+      const nameRegex = /^[A-Za-z\s]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!name || !email) {
+        alert('Please fill in Full Name and Email Address.');
+        return;
+      }
+
+      if (!nameRegex.test(name)) {
+        alert('Full Name must contain letters only.');
+        return;
+      }
+
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      if (phone && !/^\d{7,15}$/.test(phone)) {
+        alert('Phone number must contain digits only and be between 7 to 15 digits.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      const fullPhone = phone ? `${countryCode} ${phone}` : '';
+
+      document.getElementById('gs-name').value = name;
+      document.getElementById('gs-company').value = company;
+      document.getElementById('gs-email').value = email;
+      document.getElementById('gs-phone').value = fullPhone ? "'" + fullPhone : '';
+      document.getElementById('gs-stage').value = stage;
+      document.getElementById('gs-page').value = window.location.href;
+      document.getElementById('gs-submittedAt').value = new Date().toISOString();
+
+      document.getElementById('gsheetForm').submit();
+
+      setTimeout(() => {
+        showSuccessPopup();
+        resetEnquiryForm();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Enquiry';
+      }, 900);
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeSuccessPopup(false);
+    });
+  </script>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+  <script src="shared-layout.js"></script>
+
+  <script>
+    (function(){
+      const selects = document.querySelectorAll('[data-select]');
+
+      function closeAll(except){
+        selects.forEach(sel => {
+          if (sel !== except) {
+            sel.classList.remove('open');
+            const trigger = sel.querySelector('.custom-select-trigger');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      selects.forEach(select => {
+        const trigger = select.querySelector('.custom-select-trigger');
+        const valueEl = select.querySelector('.custom-select-value');
+        const options = select.querySelectorAll('.custom-select-option');
+        const hidden = select.querySelector('input[type="hidden"]');
+
+        trigger.addEventListener('click', function(e){
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = select.classList.contains('open');
+          closeAll(select);
+
+          if (!isOpen) {
+            select.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+          } else {
+            select.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        options.forEach(option => {
+          option.addEventListener('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+
+            const value = option.getAttribute('data-value') || '';
+            const label = option.getAttribute('data-label') || option.textContent.trim();
+
+            valueEl.textContent = label;
+            hidden.value = value;
+
+            options.forEach(o => o.classList.remove('is-selected'));
+            option.classList.add('is-selected');
+
+            select.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+          });
+        });
+      });
+
+      document.addEventListener('click', function(e){
+        if (!e.target.closest('[data-select]')) {
+          closeAll();
+        }
+      });
+
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') {
+          closeAll();
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    document.getElementById('f-phone').addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 15);
+    });
+
+    document.getElementById('f-name').addEventListener('input', function () {
+      this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+    });
+  </script>
 </body>
 </html>
